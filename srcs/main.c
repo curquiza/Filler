@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "filler.h"
 #include <fcntl.h>
 
 char 	*ft_get_data(void)
@@ -21,7 +21,7 @@ char 	*ft_get_data(void)
 		tmp = data;
 		data = ft_strjoin(tmp, line);
 		ft_strdel(&tmp);
-		ft_bzero(line, 11);	
+		ft_bzero(line, 11);
 	}
 	return (data);
 }

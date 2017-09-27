@@ -11,7 +11,7 @@ typedef struct	s_map
 	int		weight;
 	int		heat;
 	int		border;
-}				t_map
+}				t_map;
 
 typedef struct	s_game
 {
@@ -24,6 +24,6 @@ typedef struct	s_game
 	char	*piece;
 	int		h_piece;
 	int		w_piece;
-}				t_game
+}				t_game;
 
-#endif 
+#endif
