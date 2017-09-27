@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 12:15:31 by curquiza          #+#    #+#             */
-/*   Updated: 2017/09/05 16:13:17 by curquiza         ###   ########.fr       */
+/*   Updated: 2017/09/26 15:24:47 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 */
 
 # include "get_next_line.h"
+# include "ft_printf.h"
 
 /*
 ** Libft project - Bases
