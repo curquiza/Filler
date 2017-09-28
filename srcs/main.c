@@ -63,6 +63,31 @@ int		ft_get_map(t_game *game)
 	return (0);
 }
 
+int		ft_get_piece_size(t_game *game)
+{
+	char	*start;
+	char	*middle;
+	char	*end;
+	char	*nbr;
+	char	*line;
+
+	if (get_next_line(0, &line) == -1)
+		return (-1);
+	if ((start = ft_strchr(line, ' ')) == NULL)
+		return (-1);
+	if ((middle = ft_strchr(start + 1, ' ')) == NULL)
+		return (-1);
+	if ((end = ft_strchr(middle + 1, ':')) == NULL)
+		return (-1);
+	nbr = ft_strsub(start + 1, 0, middle - start + 1);
+	game->h_piece = ft_atoi(nbr);
+	ft_strdel(&nbr);
+	nbr = ft_strsub(middle + 1, 0, end - middle + 1);
+	game->w_piece = ft_atoi(nbr);
+	ft_strdel(&nbr);
+	return (0);
+}
+
 int		ft_get_first_data(t_game *game)
 {
 	char	*line;
@@ -81,6 +106,10 @@ int		ft_get_first_data(t_game *game)
 	ft_strdel(&line);
 	if (ft_get_map(game) == -1)
 		return (-1);
+	if (ft_get_piece_size(game) == -1)
+		return (-1);
+	//if (ft_get_piece(game) == -1)
+	//	return (-1);
 	return (0);
 }
 
@@ -102,7 +131,13 @@ void	ft_debug(t_game game)
 	ft_putnbr_fd(game.w_map, fd);
 	ft_putendl_fd("", fd);
 	ft_putendl_fd("GROSS_MAP : ", fd);
-	ft_putendl_fd(game.gross_map, fd);
+	ft_putstr_fd(game.gross_map, fd);
+	ft_putstr_fd("h_piece : ", fd);
+	ft_putnbr_fd(game.h_piece, fd);
+	ft_putendl_fd("", fd);
+	ft_putstr_fd("w_piece : ", fd);
+	ft_putnbr_fd(game.w_piece, fd);
+	ft_putendl_fd("", fd);
 	close(fd);
 }
 
