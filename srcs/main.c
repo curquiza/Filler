@@ -52,7 +52,10 @@ int		ft_get_map(t_game *game)
 		if (get_next_line(0, &line) == -1)
 			return (-1);
 		tmp = game->gross_map;
-		game->gross_map = ft_strjoin3(tmp, line, "\n");
+		if (game->gross_map == NULL)
+			game->gross_map = ft_strjoin(ft_strchr(line, ' ') + 1, "\n");
+		else
+			game->gross_map = ft_strjoin3(tmp, ft_strchr(line, ' ') + 1, "\n");
 		ft_strdel(&tmp);
 		ft_strdel(&line);
 		i++;
