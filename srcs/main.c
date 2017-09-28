@@ -1,9 +1,13 @@
 #include "filler.h"
 #include <fcntl.h>
 
-void	ft_fill_coin(char player, t_game *game)
+int		ft_get_coin(t_game *game)
 {
-	if (player == '1')
+	char	*line;
+
+	if (get_next_line(0, &line) == -1)
+		return (-1);
+	if (line[10] == '1')
 	{
 		game->my_coin = 'o';
 		game->opp_coin = 'x';
@@ -13,15 +17,20 @@ void	ft_fill_coin(char player, t_game *game)
 		game->my_coin = 'x';
 		game->opp_coin = 'o';
 	}
+	ft_strdel(&line);
+	return (0);
 }
 
-int		ft_fill_map_size(char *line, t_game *game)
+int		ft_get_map_size(t_game *game)
 {
 	char	*start;
 	char	*middle;
 	char	*end;
 	char	*nbr;
+	char	*line;
 
+	if (get_next_line(0, &line) == -1)
+		return (-1);
 	if ((start = ft_strchr(line, ' ')) == NULL)
 		return (-1);
 	if ((middle = ft_strchr(start + 1, ' ')) == NULL)
@@ -90,20 +99,10 @@ int		ft_get_piece_size(t_game *game)
 
 int		ft_get_first_data(t_game *game)
 {
-	char	*line;
-
-	if (get_next_line(0, &line) == -1)
+	if (ft_get_coin(game) == -1)
 		return (-1);
-	ft_fill_coin(line[10], game);
-	ft_strdel(&line);
-	if (get_next_line(0, &line) == -1)
+	if (ft_get_map_size(game) == -1)
 		return (-1);
-	if (ft_fill_map_size(line, game) == -1)
-	{
-		ft_strdel(&line);
-		return (-1);
-	}
-	ft_strdel(&line);
 	if (ft_get_map(game) == -1)
 		return (-1);
 	if (ft_get_piece_size(game) == -1)
