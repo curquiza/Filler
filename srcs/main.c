@@ -37,6 +37,29 @@ int		ft_fill_map_size(char *line, t_game *game)
 	return (0);
 }
 
+int		ft_get_map(t_game *game)
+{
+	char	*line;
+	char	*tmp;
+	int		i;
+
+	if (get_next_line(0, &line) == -1)
+		return (-1);
+	ft_strdel(&line);
+	i = 0;
+	while (i < game->h_map)
+	{
+		if (get_next_line(0, &line) == -1)
+			return (-1);
+		tmp = game->gross_map;
+		game->gross_map = ft_strjoin3(tmp, line, "\n");
+		ft_strdel(&tmp);
+		ft_strdel(&line);
+		i++;
+	}
+	return (0);
+}
+
 int		ft_get_first_data(t_game *game)
 {
 	char	*line;
@@ -47,7 +70,14 @@ int		ft_get_first_data(t_game *game)
 	ft_strdel(&line);
 	if (get_next_line(0, &line) == -1)
 		return (-1);
-	ft_fill_map_size(line, game);
+	if (ft_fill_map_size(line, game) == -1)
+	{
+		ft_strdel(&line);
+		return (-1);
+	}
+	ft_strdel(&line);
+	if (ft_get_map(game) == -1)
+		return (-1);
 	return (0);
 }
 
@@ -68,6 +98,8 @@ void	ft_debug(t_game game)
 	ft_putstr_fd("w_map : ", fd);
 	ft_putnbr_fd(game.w_map, fd);
 	ft_putendl_fd("", fd);
+	ft_putendl_fd("GROSS_MAP : ", fd);
+	ft_putendl_fd(game.gross_map, fd);
 	close(fd);
 }
 
@@ -75,7 +107,8 @@ int		main(void)
 {
 	t_game	game;
 
-	ft_get_first_data(&game);
+	if (ft_get_first_data(&game) == -1)
+		ft_exit("Read error", 2);
 	ft_debug(game);
 	return (0);
 }
