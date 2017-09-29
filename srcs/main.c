@@ -27,6 +27,8 @@ void	ft_debug(t_game game)
 	ft_putendl_fd("", fd);
 	ft_putendl_fd("PIECE : ", fd);
 	ft_putstr_fd(game.piece, fd);
+	ft_putendl_fd("STRAT MAP: ", fd);
+	ft_putnbr_fd(game.strat_map[1][1].x, fd);
 	close(fd);
 }
 
@@ -36,6 +38,7 @@ int		main(void)
 
 	if (ft_get_first_data(&game) == -1)
 		ft_exit("Read error", 2);
+	ft_init_strat_map(&game, game.gross_map);
 	ft_debug(game);
 	//while (1);
 	return (0);
