@@ -13,7 +13,7 @@ int		ft_fill_map(t_game *game)
 	{
 		if (get_next_line(0, &line) == -1)
 			return (-1);
-		ft_strcat(game->gross_map, line);
+		ft_strcat(game->gross_map, ft_strchr(line, ' ') + 1);
 		ft_strcat(game->gross_map, "\n");
 		ft_strdel(&line);
 		i++;
