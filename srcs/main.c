@@ -84,6 +84,7 @@ int		main(void)
 		ft_exit("Read error", 2);
 	ft_first_init_strat_map(&game, game.gross_map);
 	ft_debug(game);
+	ft_delete_all(&game);
 	//while (1);
 	return (0);
 }
