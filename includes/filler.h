@@ -25,6 +25,8 @@ typedef struct	s_game
 	char	*piece;
 	int		h_piece;
 	int		w_piece;
+	int		pos_x;
+	int		pos_y;
 }				t_game;
 
 
@@ -34,5 +36,8 @@ int		ft_get_piece(t_game *game);
 int		ft_get_first_data(t_game *game);
 void	ft_first_init_strat_map(t_game *game, char *gross_map);
 void	ft_init_strat_map(t_game *game, char *gross_map);
+
+
+void	ft_delete_all(t_game *game);
 
 #endif
