@@ -67,26 +67,3 @@ int		ft_get_piece(t_game *game)
 	}
 	return (0);
 }
-
-/*int		ft_get_piece(t_game *game)
-{
-	char	*line;
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	while (i < game->h_piece)
-	{
-		if (get_next_line(0, &line) == -1)
-			return (-1);
-		tmp = game->piece;
-		if (game->piece)
-			game->piece = ft_strjoin3(tmp, line, "\n");
-		else
-			game->piece = ft_strjoin(line, "\n");
-		ft_strdel(&tmp);
-		ft_strdel(&line);
-		i++;
-	}
-	return (0);
-}*/
