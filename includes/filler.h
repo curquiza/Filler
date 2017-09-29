@@ -2,6 +2,7 @@
 # define FILLER_H
 
 # include "libft.h"
+# include <fcntl.h>
 
 typedef struct	s_map
 {
@@ -25,5 +26,11 @@ typedef struct	s_game
 	int		h_piece;
 	int		w_piece;
 }				t_game;
+
+
+int		ft_get_map(t_game *game);
+int		ft_get_piece_size(t_game *game);
+int		ft_get_piece(t_game *game);
+int		ft_get_first_data(t_game *game);
 
 #endif
