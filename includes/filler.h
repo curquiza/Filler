@@ -25,6 +25,8 @@ typedef struct	s_game
 	char	*piece;
 	int		h_piece;
 	int		w_piece;
+	int		pos_x;
+	int		pos_y;
 }				t_game;
 
 
