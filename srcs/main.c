@@ -79,6 +79,7 @@ int		main(void)
 {
 	t_game	game;
 
+	ft_bzero(&game, sizeof(game));
 	if (ft_get_first_data(&game) == -1)
 		ft_exit("Read error", 2);
 	ft_first_init_strat_map(&game, game.gross_map);
