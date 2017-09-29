@@ -38,7 +38,7 @@ int		main(void)
 
 	if (ft_get_first_data(&game) == -1)
 		ft_exit("Read error", 2);
-	ft_init_strat_map(&game, game.gross_map);
+	ft_first_init_strat_map(&game, game.gross_map);
 	ft_debug(game);
 	//while (1);
 	return (0);
