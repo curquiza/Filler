@@ -2,4 +2,5 @@
 **/**/*.a
 **/**/*.swp
 curquiza.filler
-01_Resources/filler.trace
+**/**/debug
+**/**/filler.trace
