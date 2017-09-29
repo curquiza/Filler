@@ -31,18 +31,20 @@ int		ft_get_map_size(t_game *game)
 
 	if (get_next_line(0, &line) == -1)
 		return (-1);
-	if ((start = ft_strchr(line, ' ')) == NULL)
+	if (!(start = ft_strchr(line, ' '))
+		|| !(middle = ft_strchr(start + 1, ' '))
+		|| !(end = ft_strchr(middle + 1, ':')))
+	{
+		ft_strdel(&line);
 		return (-1);
-	if ((middle = ft_strchr(start + 1, ' ')) == NULL)
-		return (-1);
-	if ((end = ft_strchr(middle + 1, ':')) == NULL)
-		return (-1);
+	}
 	nbr = ft_strsub(start + 1, 0, middle - start + 1);
 	game->h_map = ft_atoi(nbr);
 	ft_strdel(&nbr);
 	nbr = ft_strsub(middle + 1, 0, end - middle + 1);
 	game->w_map = ft_atoi(nbr);
 	ft_strdel(&nbr);
+	ft_strdel(&line);
 	return (0);
 }
 
@@ -82,18 +84,20 @@ int		ft_get_piece_size(t_game *game)
 
 	if (get_next_line(0, &line) == -1)
 		return (-1);
-	if ((start = ft_strchr(line, ' ')) == NULL)
+	if (!(start = ft_strchr(line, ' '))
+		|| !(middle = ft_strchr(start + 1, ' '))
+		|| !(end = ft_strchr(middle + 1, ':')))
+	{
+		ft_strdel(&line);
 		return (-1);
-	if ((middle = ft_strchr(start + 1, ' ')) == NULL)
-		return (-1);
-	if ((end = ft_strchr(middle + 1, ':')) == NULL)
-		return (-1);
+	}
 	nbr = ft_strsub(start + 1, 0, middle - start + 1);
 	game->h_piece = ft_atoi(nbr);
 	ft_strdel(&nbr);
 	nbr = ft_strsub(middle + 1, 0, end - middle + 1);
 	game->w_piece = ft_atoi(nbr);
 	ft_strdel(&nbr);
+	ft_strdel(&line);
 	return (0);
 }
 
@@ -172,6 +176,7 @@ int		main(void)
 	if (ft_get_first_data(&game) == -1)
 		ft_exit("Read error", 2);
 	ft_debug(game);
+	while (1);
 	return (0);
 }
 
