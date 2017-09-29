@@ -56,6 +56,26 @@ int		ft_get_piece_size(t_game *game)
 int		ft_get_piece(t_game *game)
 {
 	char	*line;
+	int		i;
+
+	game->piece = ft_memalloc(sizeof(*game->piece) *
+				(game->h_piece * game->w_piece + game->h_piece + 1));
+	i = 0;
+	while (i < game->h_piece)
+	{
+		if (get_next_line(0, &line) == -1)
+			return (-1);
+		ft_strcat(game->piece, line);
+		ft_strcat(game->piece, "\n");
+		ft_strdel(&line);
+		i++;
+	}
+	return (0);
+}
+
+/*int		ft_get_piece(t_game *game)
+{
+	char	*line;
 	char	*tmp;
 	int		i;
 
@@ -74,4 +94,4 @@ int		ft_get_piece(t_game *game)
 		i++;
 	}
 	return (0);
-}
+}*/
