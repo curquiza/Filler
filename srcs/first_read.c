@@ -53,7 +53,9 @@ int		ft_get_first_data(t_game *game)
 		return (-1);
 	if (ft_get_map_size(game) == -1)
 		return (-1);
-	if (ft_get_map(game) == -1)
+	game->gross_map = ft_memalloc(sizeof(*game->gross_map) *
+				(game->h_map * game->w_map + game->h_map + 1));
+	if (ft_fill_map(game) == -1)
 		return (-1);
 	if (ft_get_piece_size(game) == -1)
 		return (-1);

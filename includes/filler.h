@@ -28,7 +28,7 @@ typedef struct	s_game
 }				t_game;
 
 
-int		ft_get_map(t_game *game);
+int		ft_fill_map(t_game *game);
 int		ft_get_piece_size(t_game *game);
 int		ft_get_piece(t_game *game);
 int		ft_get_first_data(t_game *game);
