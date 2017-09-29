@@ -61,10 +61,10 @@ int		ft_get_map(t_game *game)
 		if (get_next_line(0, &line) == -1)
 			return (-1);
 		tmp = game->gross_map;
-		if (game->gross_map == NULL)
-			game->gross_map = ft_strjoin(ft_strchr(line, ' ') + 1, "\n");
-		else
+		if (game->gross_map)
 			game->gross_map = ft_strjoin3(tmp, ft_strchr(line, ' ') + 1, "\n");
+		else
+			game->gross_map = ft_strjoin(ft_strchr(line, ' ') + 1, "\n");
 		ft_strdel(&tmp);
 		ft_strdel(&line);
 		i++;
@@ -97,6 +97,29 @@ int		ft_get_piece_size(t_game *game)
 	return (0);
 }
 
+int		ft_get_piece(t_game *game)
+{
+	char	*line;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while (i < game->h_piece)
+	{
+		if (get_next_line(0, &line) == -1)
+			return (-1);
+		tmp = game->piece;
+		if (game->piece)
+			game->piece = ft_strjoin3(tmp, line, "\n");
+		else
+			game->piece = ft_strjoin(line, "\n");
+		ft_strdel(&tmp);
+		ft_strdel(&line);
+		i++;
+	}
+	return (0);
+}
+
 int		ft_get_first_data(t_game *game)
 {
 	if (ft_get_coin(game) == -1)
@@ -107,8 +130,8 @@ int		ft_get_first_data(t_game *game)
 		return (-1);
 	if (ft_get_piece_size(game) == -1)
 		return (-1);
-	//if (ft_get_piece(game) == -1)
-	//	return (-1);
+	if (ft_get_piece(game) == -1)
+		return (-1);
 	return (0);
 }
 
@@ -137,6 +160,8 @@ void	ft_debug(t_game game)
 	ft_putstr_fd("w_piece : ", fd);
 	ft_putnbr_fd(game.w_piece, fd);
 	ft_putendl_fd("", fd);
+	ft_putendl_fd("PIECE : ", fd);
+	ft_putstr_fd(game.piece, fd);
 	close(fd);
 }
 
