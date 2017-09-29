@@ -1,5 +1,46 @@
 #include "filler.h"
 
+void	ft_put_stratmap_coord(t_game game, int fd)
+{
+	int		i;
+	int		j;
+	
+	i = 0;
+	while (i < game.h_map)
+	{
+		j = 0;
+		while (j < game.w_map)
+		{
+			ft_putnbr_fd(game.strat_map[i][j].x, fd);
+			ft_putchar_fd('-', fd);
+			ft_putnbr_fd(game.strat_map[i][j].y, fd);
+			ft_putchar_fd(' ', fd);
+			j++;
+		}
+		ft_putchar_fd('\n', fd);
+		i++;
+	}
+}
+
+void	ft_put_stratmap_value(t_game game, int fd)
+{
+	int		i;
+	int		j;
+	
+	i = 0;
+	while (i < game.h_map)
+	{
+		j = 0;
+		while (j < game.w_map)
+		{
+			ft_putchar_fd(game.strat_map[i][j].value, fd);
+			j++;
+		}
+		ft_putchar_fd('\n', fd);
+		i++;
+	}
+}
+
 void	ft_debug(t_game game)
 {
 	int		fd;
@@ -27,8 +68,10 @@ void	ft_debug(t_game game)
 	ft_putendl_fd("", fd);
 	ft_putendl_fd("PIECE : ", fd);
 	ft_putstr_fd(game.piece, fd);
-	ft_putendl_fd("STRAT MAP: ", fd);
-	ft_putnbr_fd(game.strat_map[1][1].x, fd);
+	ft_putendl_fd("STRAT MAP VALUE: ", fd);
+	ft_put_stratmap_value(game, fd);
+	ft_putendl_fd("STRAT MAP X-Y: ", fd);
+	ft_put_stratmap_coord(game, fd);
 	close(fd);
 }
 
