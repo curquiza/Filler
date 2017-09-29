@@ -2,6 +2,9 @@
 
 void	ft_init_strat_map(t_game *game, char *gross_map)
 {
+	int		i;
+	int		j;
+
 	i = 0;
 	while (i < game->h_map)
 	{
