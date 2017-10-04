@@ -85,7 +85,8 @@ int		main(void)
 	ft_debug(game);
 	while (1)
 	{
-		ft_get_data(&game);
+		if (ft_get_data(&game) == -1)
+			break ;
 		if (ft_put_piece(&game) == -1)
 			break ;
 		else
