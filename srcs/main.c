@@ -84,6 +84,19 @@ int		main(void)
 		ft_exit("Read error", 2);
 	ft_first_init_strat_map(&game, game.gross_map);
 	ft_debug(game);
+	while (1)
+	{
+		if (ft_put_piece(&game) == -1)
+		{
+			ft_printf("12 14\n");
+			break ;
+		}
+		else
+			ft_printf("%d %d\n", 12, 14);
+		ft_clear_all(&game);
+		ft_read_map_and_piece(&game);
+		ft_init_strat_map(&game, game.gross_map);
+	}
 	ft_delete_all(&game);
 	//while (1);
 	return (0);

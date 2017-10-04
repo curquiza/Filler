@@ -11,6 +11,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 		  init_strat_map.c \
 		  delete_all.c \
 		  clear.c \
+		  algo.c \
 		  main.c)
 
 O_DIR = objs
