@@ -94,6 +94,7 @@ int		main(void)
 		else
 			ft_printf("%d %d\n", game.pos_x, game.pos_y);
 		ft_clear_all(&game);
+		ft_read_map_and_piece(&game);
 		ft_init_strat_map(&game, game.gross_map);
 	}
 	ft_delete_all(&game);

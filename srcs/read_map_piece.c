@@ -67,3 +67,14 @@ int		ft_get_piece(t_game *game)
 	}
 	return (0);
 }
+
+int		ft_read_map_and_piece(t_game *game)
+{
+	if (ft_fill_map(game) == -1)
+		return (-1);
+	if (ft_get_piece_size(game) == -1)
+		return (-1);
+	if (ft_get_piece(game) == -1)
+		return (-1);
+	return (0);
+}
