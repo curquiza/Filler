@@ -8,8 +8,7 @@ C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
 		  get_data.c \
 		  first_init.c \
-		  delete_all.c \
-		  clear.c \
+		  delete_and_clear.c \
 		  algo.c \
 		  main.c)
 
