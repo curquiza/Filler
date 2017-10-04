@@ -47,7 +47,7 @@ static int		ft_get_map_size(t_game *game)
 	return (0);
 }
 
-void	ft_first_init_strat_map(t_game *game, char *gross_map)
+static void	ft_first_init_strat_map(t_game *game)
 {
 	int		i;
 	int		j;
@@ -63,11 +63,8 @@ void	ft_first_init_strat_map(t_game *game, char *gross_map)
 		{
 			game->strat_map[i][j].x = i;
 			game->strat_map[i][j].y = j;
-			game->strat_map[i][j].value = *gross_map;
-			gross_map++;
 			j++;
 		}
-		gross_map++;
 		i++;
 	}
 }
@@ -80,6 +77,6 @@ int		ft_first_init(t_game *game)
 		return (-1);
 	game->gross_map = ft_memalloc(sizeof(*game->gross_map) *
 				(game->h_map * game->w_map + game->h_map + 1));
-	ft_first_init_strat_map(game, game->gross_map);
+	ft_first_init_strat_map(game);
 	return (0);
 }

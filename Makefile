@@ -8,7 +8,6 @@ C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
 		  read_map_piece.c \
 		  first_init.c \
-		  init_strat_map.c \
 		  delete_all.c \
 		  clear.c \
 		  algo.c \
