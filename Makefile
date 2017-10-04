@@ -6,11 +6,9 @@ CC = gcc -Wall -Wextra -Werror
 
 C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
-		  read_map_piece.c \
-		  first_read.c \
-		  init_strat_map.c \
-		  delete_all.c \
-		  clear.c \
+		  get_data.c \
+		  first_init.c \
+		  delete_and_clear.c \
 		  algo.c \
 		  main.c)
 
