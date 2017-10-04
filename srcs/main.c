@@ -4,7 +4,7 @@ void	ft_put_stratmap_coord(t_game game, int fd)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	while (i < game.h_map)
 	{
@@ -26,7 +26,7 @@ void	ft_put_stratmap_value(t_game game, int fd)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	while (i < game.h_map)
 	{
