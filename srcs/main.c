@@ -92,7 +92,7 @@ int		main(void)
 			break ;
 		}
 		else
-			ft_printf("%d %d\n", game.pos_x, game.pos_y);
+			ft_printf("%d %d\n", 12, 14);
 		ft_clear_all(&game);
 		ft_read_map_and_piece(&game);
 		ft_init_strat_map(&game, game.gross_map);
