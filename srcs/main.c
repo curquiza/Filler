@@ -80,12 +80,13 @@ int		main(void)
 	t_game	game;
 
 	ft_bzero(&game, sizeof(game));
-	if (ft_get_first_data(&game) == -1)
+	if (ft_first_init(&game) == -1)
 		ft_exit("Read error", 2);
-	ft_first_init_strat_map(&game, game.gross_map);
 	ft_debug(game);
 	while (1)
 	{
+		ft_read_map_and_piece(&game);
+		ft_init_strat_map(&game, game.gross_map);
 		if (ft_put_piece(&game) == -1)
 		{
 			ft_printf("12 14\n");
@@ -94,8 +95,6 @@ int		main(void)
 		else
 			ft_printf("%d %d\n", 12, 14);
 		ft_clear_all(&game);
-		ft_read_map_and_piece(&game);
-		ft_init_strat_map(&game, game.gross_map);
 	}
 	ft_delete_all(&game);
 	//while (1);

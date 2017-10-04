@@ -33,7 +33,7 @@ typedef struct	s_game
 int		ft_fill_map(t_game *game);
 int		ft_get_piece_size(t_game *game);
 int		ft_get_piece(t_game *game);
-int		ft_get_first_data(t_game *game);
+int		ft_first_init(t_game *game);
 
 void	ft_init_strat_map(t_game *game, char *gross_map);
 
