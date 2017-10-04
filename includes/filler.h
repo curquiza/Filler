@@ -9,9 +9,9 @@ typedef struct	s_map
 	char	value;
 	int		x;
 	int		y;
-	int		weight;
-	int		heat;
-	int		border;
+	float	weight;
+	float	heat;
+	float	border;
 }				t_map;
 
 typedef struct	s_game
@@ -29,6 +29,13 @@ typedef struct	s_game
 	int		pos_y;
 }				t_game;
 
+typedef struct	s_heat_map
+{
+	int		right;
+	int		left;
+	int		up;
+	int		down;
+}				t_heat_map;
 
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
