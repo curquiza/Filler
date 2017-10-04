@@ -10,6 +10,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 		  first_read.c \
 		  init_strat_map.c \
 		  delete_all.c \
+		  clear.c \
 		  main.c)
 
 O_DIR = objs
