@@ -47,7 +47,29 @@ static int		ft_get_map_size(t_game *game)
 	return (0);
 }
 
-int		ft_get_first_data(t_game *game)
+static void	ft_first_init_strat_map(t_game *game)
+{
+	int		i;
+	int		j;
+
+	game->strat_map = ft_memalloc(sizeof(*game->strat_map) * game->h_map);
+	i = 0;
+	while (i < game->h_map)
+	{
+		game->strat_map[i] = ft_memalloc(sizeof(**game->strat_map)
+											* game->w_map);
+		j = 0;
+		while (j < game->w_map)
+		{
+			game->strat_map[i][j].x = i;
+			game->strat_map[i][j].y = j;
+			j++;
+		}
+		i++;
+	}
+}
+
+int		ft_first_init(t_game *game)
 {
 	if (ft_get_coin(game) == -1)
 		return (-1);
@@ -55,11 +77,6 @@ int		ft_get_first_data(t_game *game)
 		return (-1);
 	game->gross_map = ft_memalloc(sizeof(*game->gross_map) *
 				(game->h_map * game->w_map + game->h_map + 1));
-	if (ft_fill_map(game) == -1)
-		return (-1);
-	if (ft_get_piece_size(game) == -1)
-		return (-1);
-	if (ft_get_piece(game) == -1)
-		return (-1);
+	ft_first_init_strat_map(game);
 	return (0);
 }

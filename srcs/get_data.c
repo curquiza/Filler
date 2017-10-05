@@ -1,6 +1,6 @@
 #include "filler.h"
 
-int		ft_fill_map(t_game *game)
+static int		ft_fill_map(t_game *game)
 {
 	char	*line;
 	int		i;
@@ -13,6 +13,8 @@ int		ft_fill_map(t_game *game)
 	{
 		if (get_next_line(0, &line) == -1)
 			return (-1);
+		if (!line)
+			return (-1);
 		ft_strcat(game->gross_map, ft_strchr(line, ' ') + 1);
 		ft_strcat(game->gross_map, "\n");
 		ft_strdel(&line);
@@ -21,7 +23,7 @@ int		ft_fill_map(t_game *game)
 	return (0);
 }
 
-int		ft_get_piece_size(t_game *game)
+static int		ft_get_piece_size(t_game *game)
 {
 	char	*start;
 	char	*middle;
@@ -30,6 +32,8 @@ int		ft_get_piece_size(t_game *game)
 	char	*line;
 
 	if (get_next_line(0, &line) == -1)
+		return (-1);
+	if (!line)
 		return (-1);
 	if (!(start = ft_strchr(line, ' '))
 		|| !(middle = ft_strchr(start + 1, ' '))
@@ -48,7 +52,7 @@ int		ft_get_piece_size(t_game *game)
 	return (0);
 }
 
-int		ft_get_piece(t_game *game)
+static int		ft_get_piece(t_game *game)
 {
 	char	*line;
 	int		i;
@@ -60,10 +64,44 @@ int		ft_get_piece(t_game *game)
 	{
 		if (get_next_line(0, &line) == -1)
 			return (-1);
+		if (!line)
+			return (-1);
 		ft_strcat(game->piece, line);
 		ft_strcat(game->piece, "\n");
 		ft_strdel(&line);
 		i++;
 	}
+	return (0);
+}
+
+static void	ft_init_strat_map(t_game *game, char *gross_map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < game->h_map)
+	{
+		j = 0;
+		while (j < game->w_map)
+		{
+			game->strat_map[i][j].value = *gross_map;
+			gross_map++;
+			j++;
+		}
+		gross_map++;
+		i++;
+	}
+}
+
+int		ft_get_data(t_game *game)
+{
+	if (ft_fill_map(game) == -1)
+		return (-1);
+	if (ft_get_piece_size(game) == -1)
+		return (-1);
+	if (ft_get_piece(game) == -1)
+		return (-1);
+	ft_init_strat_map(game, game->gross_map);
 	return (0);
 }

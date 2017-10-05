@@ -4,7 +4,7 @@ void	ft_put_stratmap_coord(t_game game, int fd)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	while (i < game.h_map)
 	{
@@ -26,7 +26,7 @@ void	ft_put_stratmap_value(t_game game, int fd)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	while (i < game.h_map)
 	{
@@ -80,10 +80,19 @@ int		main(void)
 	t_game	game;
 
 	ft_bzero(&game, sizeof(game));
-	if (ft_get_first_data(&game) == -1)
+	if (ft_first_init(&game) == -1)
 		ft_exit("Read error", 2);
-	ft_first_init_strat_map(&game, game.gross_map);
 	ft_debug(game);
+	while (1)
+	{
+		if (ft_get_data(&game) == -1)
+			break ;
+		if (ft_put_piece(&game) == -1)
+			break ;
+		else
+			ft_printf("%d %d\n", 12, 14);
+		ft_clear_all(&game);
+	}
 	ft_delete_all(&game);
 	//while (1);
 	return (0);
