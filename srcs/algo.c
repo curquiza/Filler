@@ -21,6 +21,13 @@ int		ft_min(int a, int b)
 	return (b);
 }
 
+int		ft_max(int a, int b)
+{
+	if (a >= b)
+		return (a);
+	return (b);
+}
+
 static void	ft_init_heat_map(t_game *game, t_heat_map ***map)
 {
 	int		i;
@@ -38,7 +45,7 @@ int		ft_get_sides(t_game *game, t_heat_map **map, int i, int j)
 {
 	if (i != 0 && ft_is_opp(game, game->strat_map[i - 1][j].value))
 		map[i][j].side++;
-	if (j != 0 && ft_is_opp(game, game->strat_map[i][j + 1].value))
+	if (j != 0 && ft_is_opp(game, game->strat_map[i][j - 1].value))
 		map[i][j].side++;
 	if (i != game->h_map - 1
 		&& ft_is_opp(game, game->strat_map[i + 1][j].value))
@@ -60,9 +67,38 @@ void	ft_get_diag(t_game *game, t_heat_map **map, int i, int j)
 	if (i != game->h_map - 1 && j != 0
 		&& ft_is_opp(game, game->strat_map[i + 1][j - 1].value))
 		map[i][j].diag++;
-	if (i != game->h_map - 1 && j != game->w_map
+	if (i != game->h_map - 1 && j != game->w_map - 1
 		&& ft_is_opp(game, game->strat_map[i + 1][j + 1].value))
 		map[i][j].diag++;
+}
+
+void	ft_get_heat_with_sides(t_game *game, t_heat_map **map, int i, int j)
+{
+	int		check;
+
+	check = 0;
+	map[i][j].heat = ft_max(game->h_map, game->w_map);
+	if (i != 0 && map[i - 1][j].heat != 0)
+	{
+		map[i][j].heat = ft_min(map[i][j].heat, map[i - 1][j].heat);
+		check = 1;
+	}
+	if (j != 0 && map[i][j - 1].heat != 0)
+	{
+		map[i][j].heat = ft_min(map[i][j].heat, map[i][j - 1].heat);
+		check = 1;
+	}
+	if (i != game->h_map - 1 && map[i + 1][j].heat != 0)
+	{
+		map[i][j].heat = ft_min(map[i][j].heat, map[i + 1][j].heat);
+		check = 1;
+	}
+	if (j != game->w_map - 1 && map[i][j + 1].heat != 0)
+	{
+		map[i][j].heat = ft_min(map[i][j].heat, map[i][j + 1].heat);
+		check = 1;
+	}
+	map[i][j].heat = (check == 1 ? map[i][j].heat - 1 : 0);
 }
 
 void	ft_first_calc(t_game *game, t_heat_map **map)
@@ -80,8 +116,10 @@ void	ft_first_calc(t_game *game, t_heat_map **map)
 				&& map[i][j].heat == 0)
 			{
 				if (ft_get_sides(game, map, i, j) == 1)
-					map[i][j].heat = ft_min(game->h_map, game->w_map);
+					map[i][j].heat = ft_max(game->h_map, game->w_map);
 				ft_get_diag(game, map, i, j);
+				if (map[i][j].heat == 0)
+					ft_get_heat_with_sides(game, map, i, j);
 			}
 			j++;
 		}
