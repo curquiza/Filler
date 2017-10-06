@@ -31,10 +31,9 @@ typedef struct	s_game
 
 typedef struct	s_heat_map
 {
-	int		right;
-	int		left;
-	int		up;
-	int		down;
+	int		side;
+	int		diag;
+	int		heat;
 }				t_heat_map;
 
 int		ft_first_init(t_game *game);
