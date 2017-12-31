@@ -36,6 +36,12 @@ typedef struct	s_heat_map
 	int		heat;
 }				t_heat_map;
 
+int		ft_is_me(t_game game, char value);
+int		ft_is_opp(t_game game, char value);
+int		ft_is_empty(char value);
+int		ft_min(int a, int b);
+int		ft_max(int a, int b);
+
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 

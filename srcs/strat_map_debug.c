@@ -11,8 +11,12 @@ void	ft_put_stratmap_heat(t_game game, int fd)
 		j = 0;
 		while (j < game.w_map)
 		{
-			ft_putnbr_fd(game.strat_map[i][j].heat, fd);
-			ft_putchar_fd(' ', fd);
+			if (ft_is_me(game, game.strat_map[i][j].value)
+				|| ft_is_opp(game, game.strat_map[i][j].value))
+				ft_putchar_fd(game.strat_map[i][j].value, fd);
+			else
+				ft_putnbr_fd(game.strat_map[i][j].heat, fd);
+			ft_putchar_fd('\t', fd);
 			j++;
 		}
 		ft_putchar_fd('\n', fd);

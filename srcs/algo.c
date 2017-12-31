@@ -1,33 +1,5 @@
 #include "filler.h"
 
-int		ft_is_opp(t_game *game, char value)
-{
-	if (value == game->opp_coin || value == game->opp_coin - 32)
-		return (1);
-	return (0);
-}
-
-int		ft_is_empty(char value)
-{
-	if (value == '.')
-		return (1);
-	return (0);
-}
-
-int		ft_min(int a, int b)
-{
-	if (a <= b)
-		return (a);
-	return (b);
-}
-
-int		ft_max(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
 //static void	ft_init_heat_map(t_game *game, t_heat_map ***map)
 //{
 //	int		i;
@@ -127,17 +99,17 @@ int		ft_max(int a, int b)
 //	}
 //}
 
-int		ft_has_opp_side(t_game *game, int i, int j)
+int		ft_has_opp_side(t_game game, int i, int j)
 {
-	if (i != 0 && ft_is_opp(game, game->strat_map[i - 1][j].value))
+	if (i != 0 && ft_is_opp(game, game.strat_map[i - 1][j].value))
 		return (1);
-	if (j != 0 && ft_is_opp(game, game->strat_map[i][j - 1].value))
+	if (j != 0 && ft_is_opp(game, game.strat_map[i][j - 1].value))
 		return (1);
-	if (i != game->h_map - 1
-		&& ft_is_opp(game, game->strat_map[i + 1][j].value))
+	if (i != game.h_map - 1
+		&& ft_is_opp(game, game.strat_map[i + 1][j].value))
 		return (1);
-	if (j != game->w_map - 1
-		&& ft_is_opp(game, game->strat_map[i][j + 1].value))
+	if (j != game.w_map - 1
+		&& ft_is_opp(game, game.strat_map[i][j + 1].value))
 		return (1);
 	return (0);
 }
@@ -156,13 +128,50 @@ void	ft_first_heat_calc(t_game *game)
 		while (j < game->w_map)
 		{
 			if (ft_is_empty(game->strat_map[i][j].value)
-				&& ft_has_opp_side(game, i, j))
+				&& ft_has_opp_side(*game, i, j))
 				game->strat_map[i][j].heat = max_val;
 			j++;
 		}
 		i++;
 	}
 }
+
+int		ft_get_side_val(t_game *game, int i, int j)
+{
+	int		max;
+
+	max = 0;
+	if (i != 0 && game->strat_map[i - 1][j].heat > max)
+		max = game->strat_map[i - 1][j].heat;
+	if (j != 0 && game->strat_map[i][j - 1].heat > max)
+		max = game->strat_map[i][j - 1].heat;
+	if (i != game->h_map - 1 && game->strat_map[i + 1][j].heat > max)
+		max = game->strat_map[i + 1][j].heat;
+	if (j != game->w_map - 1 && game->strat_map[i][j + 1].heat > max)
+		max = game->strat_map[i][j + 1].heat;
+	return (max);
+}
+
+void	ft_fill_heat_1(t_game *game)
+{
+	int		i;
+	int		j;
+	int		side_val;
+
+	i = 0;
+	while (i < game->h_map)
+	{
+		j = 0;
+		while (j < game->w_map)
+		{
+			if ((side_val = ft_get_side_val(game, i, j)) > 0)
+				game->strat_map[i][j].heat = side_val - 1;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_calculate_heat_weight(t_game *game)
 {
 	//t_heat_map **heat_map;
