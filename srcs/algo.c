@@ -121,6 +121,7 @@ void	ft_first_heat_calc(t_game *game)
 	int		max_val;
 
 	max_val = ft_max(game->h_map, game->w_map) * 4;
+	ft_putnbr_fd(max_val, 2);
 	i = 0;
 	while (i < game->h_map)
 	{
@@ -164,11 +165,39 @@ void	ft_fill_heat_1(t_game *game)
 		j = 0;
 		while (j < game->w_map)
 		{
-			if ((side_val = ft_get_side_val(game, i, j)) > 0)
-				game->strat_map[i][j].heat = side_val - 1;
+			if (game->strat_map[i][j].heat == 0
+				&& !ft_is_opp(*game, game->strat_map[i][j].value))
+			{
+				if ((side_val = ft_get_side_val(game, i, j)) > 0)
+					game->strat_map[i][j].heat = side_val - 1;
+			}
 			j++;
 		}
 		i++;
+	}
+}
+
+void	ft_fill_heat_2(t_game *game)
+{
+	int		i;
+	int		j;
+	int		side_val;
+
+	i = game->h_map - 1;
+	while (i >= 0)
+	{
+		j = game->w_map - 1;
+		while (j >= 0)
+		{
+			if (game->strat_map[i][j].heat == 0
+				&& !ft_is_opp(*game, game->strat_map[i][j].value))
+			{
+				if ((side_val = ft_get_side_val(game, i, j)) > 0)
+					game->strat_map[i][j].heat = side_val - 1;
+			}
+			j--;
+		}
+		i--;
 	}
 }
 
@@ -179,6 +208,7 @@ void	ft_calculate_heat_weight(t_game *game)
 	//ft_init_heat_map(game, &heat_map);
 	ft_first_heat_calc(game);
 	ft_fill_heat_1(game);
+	ft_fill_heat_2(game);
 }
 
 int		ft_put_piece(t_game *game, int round)
