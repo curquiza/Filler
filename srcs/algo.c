@@ -120,7 +120,7 @@ void	ft_first_heat_calc(t_game *game)
 	int		j;
 	int		max_val;
 
-	max_val = ft_max(game->h_map, game->w_map);
+	max_val = ft_max(game->h_map, game->w_map) * 4;
 	i = 0;
 	while (i < game->h_map)
 	{
