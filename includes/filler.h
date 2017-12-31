@@ -39,10 +39,11 @@ typedef struct	s_heat_map
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 
-int		ft_put_piece(t_game *game);
+int		ft_put_piece(t_game *game, int round);
 
 void	ft_clear_all(t_game *game);
 void	ft_delete_all(t_game *game);
 
+void	ft_put_stratmap(t_game game, int round);
 
 #endif

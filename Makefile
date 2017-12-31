@@ -6,6 +6,7 @@ CC = gcc -Wall -Wextra -Werror
 
 C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
+		  strat_map_debug.c \
 		  get_data.c \
 		  first_init.c \
 		  delete_and_clear.c \
