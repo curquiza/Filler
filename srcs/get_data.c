@@ -7,6 +7,14 @@ static int		ft_fill_map(t_game *game)
 
 	if (get_next_line(0, &line) == -1)
 		return (-1);
+	if (!line)
+		return (-1);
+	if (line[0] == 'P')
+	{
+		ft_strdel(&line);
+		if (get_next_line(0, &line) == -1)
+			return (-1);
+	}
 	ft_strdel(&line);
 	i = 0;
 	while (i < game->h_map)
@@ -80,16 +88,17 @@ static void	ft_init_strat_map(t_game *game, char *gross_map)
 	int		j;
 
 	i = 0;
-	while (i < game->h_map)
+	while (*gross_map && i < game->h_map)
 	{
 		j = 0;
-		while (j < game->w_map)
+		while (*gross_map && j < game->w_map)
 		{
 			game->strat_map[i][j].value = *gross_map;
 			gross_map++;
 			j++;
 		}
-		gross_map++;
+		if (*gross_map)
+			gross_map++;
 		i++;
 	}
 }

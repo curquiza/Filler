@@ -41,11 +41,11 @@ void	ft_put_stratmap_value(t_game game, int fd)
 	}
 }
 
-void	ft_debug(t_game game)
+void	ft_init_debug(t_game game)
 {
 	int		fd;
 
-	fd = open("debug", O_RDWR | O_CREAT | O_TRUNC, 0666);
+	fd = open("debug_init", O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putstr_fd("my_coin : ", fd);
 	ft_putchar_fd(game.my_coin, fd);
 	ft_putendl_fd("", fd);
@@ -68,8 +68,8 @@ void	ft_debug(t_game game)
 	ft_putendl_fd("", fd);
 	ft_putendl_fd("PIECE : ", fd);
 	ft_putstr_fd(game.piece, fd);
-	ft_putendl_fd("STRAT MAP VALUE: ", fd);
-	ft_put_stratmap_value(game, fd);
+	//ft_putendl_fd("STRAT MAP VALUE: ", fd);
+	//ft_put_stratmap_value(game, fd);
 	ft_putendl_fd("STRAT MAP X-Y: ", fd);
 	ft_put_stratmap_coord(game, fd);
 	close(fd);
@@ -78,20 +78,23 @@ void	ft_debug(t_game game)
 int		main(void)
 {
 	t_game	game;
+	int		round;
 
 	ft_bzero(&game, sizeof(game));
 	if (ft_first_init(&game) == -1)
 		ft_exit("Read error", 2);
-	ft_debug(game);
+	ft_init_debug(game);
+	round = 1;
 	while (1)
 	{
 		if (ft_get_data(&game) == -1)
 			break ;
-		if (ft_put_piece(&game) == -1)
+		if (ft_put_piece(&game, round) == -1)
 			break ;
 		else
 			ft_printf("%d %d\n", 12, 14);
 		ft_clear_all(&game);
+		round++;
 	}
 	ft_delete_all(&game);
 	//while (1);
