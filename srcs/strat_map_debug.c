@@ -29,9 +29,9 @@ void	ft_put_stratmap(t_game game, int round)
 	int		fd;
 
 	if (round == 1)
-		fd = open("strat_map_debug", O_RDWR | O_CREAT | O_TRUNC, 0666);
+		fd = open("debug_strat_map", O_RDWR | O_CREAT | O_TRUNC, 0666);
 	else
-		fd = open("strat_map_debug", O_RDWR | O_CREAT | O_APPEND, 0666);
+		fd = open("debug_strat_map", O_RDWR | O_CREAT | O_APPEND, 0666);
 	ft_putstr_fd("ROUND: ", fd);
 	ft_putnbr_fd(round, fd);
 	ft_putchar_fd('\n', fd);

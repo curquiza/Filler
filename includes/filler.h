@@ -47,6 +47,10 @@ int		ft_get_data(t_game *game);
 
 int		ft_put_piece(t_game *game, int round);
 
+void	ft_first_heat_calc(t_game *game);
+void	ft_fill_heat_1(t_game *game);
+void	ft_fill_heat_2(t_game *game);
+
 void	ft_clear_all(t_game *game);
 void	ft_delete_all(t_game *game);
 

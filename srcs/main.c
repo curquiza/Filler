@@ -45,7 +45,7 @@ void	ft_init_debug(t_game game)
 {
 	int		fd;
 
-	fd = open("init_debug", O_RDWR | O_CREAT | O_TRUNC, 0666);
+	fd = open("debug_init", O_RDWR | O_CREAT | O_TRUNC, 0666);
 	ft_putstr_fd("my_coin : ", fd);
 	ft_putchar_fd(game.my_coin, fd);
 	ft_putendl_fd("", fd);

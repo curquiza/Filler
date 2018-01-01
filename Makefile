@@ -12,6 +12,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 		  first_init.c \
 		  delete_and_clear.c \
 		  algo.c \
+		  heat_map.c \
 		  main.c)
 
 O_DIR = objs
