@@ -15,10 +15,12 @@ LIBFT_DIR = ../libft
 LIBFT = $(LIBFT_DIR)/libft.a
 H_DIR = includes
 
-H_TEST = ../includes
+PROJ_LIB = libfiller.a
+PROJ_DIR = ..
+H_DIR_PROJ = ../includes
 
-LIB = -L$(LIBFT_DIR) -lft
-INCL = -I$(H_DIR) -I$(LIBFT_DIR)/includes -I$(H_TEST)
+LIB = -L$(LIBFT_DIR) -lft -L. -lfiller
+INCL = -I$(H_DIR) -I$(LIBFT_DIR)/includes -I$(H_DIR_PROJ)
 
 ################################################################################
 #################################### RULES #####################################
@@ -30,11 +32,15 @@ $(LIBFT) :
 	@echo "\033[1;31m-- LIBFT ----------------------\033[0m"
 	@make -C $(LIBFT_DIR)
 	@printf  "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
-	@echo "\033[1;31m-- OBJECTS ---------------------\033[0m"
 
-$(NAME) : $(LIBFT) $(O_FILES)
-	@$(CC) $(O_FILES) -o $@ $(LIB)
+libfiller :
+	@echo "\033[1;31m-- FILLER ---------------------\033[0m"
+	@make -C $(PROJ_DIR) $(PROJ_LIB)
+	@echo "\033[1;31m-- TEST OBJ --------------------\033[0m"
+
+$(NAME) : $(LIBFT) libfiller $(O_FILES) 
 	@echo "\033[1;31m-- EXEC ------------------------\033[0m"
+	@$(CC) $(O_FILES) -o $@ $(LIB)
 	@printf  "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
 
 $(O_DIR)/%.o: $(C_DIR)/%.c $(H_DIR)
@@ -44,11 +50,14 @@ $(O_DIR)/%.o: $(C_DIR)/%.c $(H_DIR)
 
 clean :
 	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(PROJ_DIR)
 	@rm -rf $(O_DIR)
 
 fclean : clean
 	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(PROJ_DIR)
 	@rm -rf $(NAME)
+	@rm -rf $(PROJ_LIB)
 
 re : fclean all
 

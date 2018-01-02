@@ -22,6 +22,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 H_DIR = includes
 
+PROJ_LIB = libfiller.a
 
 LIB = -L$(LIBFT_DIR) -lft
 INCL = -I$(H_DIR) -I$(LIBFT_DIR)/includes
@@ -57,5 +58,9 @@ fclean : clean
 	@rm -rf $(NAME)
 
 re : fclean all
+
+$(PROJ_LIB): $(O_FILES)
+	@ar rc tests/$@ $(O_FILES)
+	@ranlib tests/$(PROJ_LIB)
 
 .PHONY : clean all fclean re

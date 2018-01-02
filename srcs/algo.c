@@ -1,6 +1,6 @@
 #include "filler.h"
 
-static void	ft_calculate_heat_weight(t_game *game)
+static void	ft_calc_heat_weight(t_game *game)
 {
 	ft_first_heat_calc(game);
 	ft_fill_heat_1(game);
@@ -9,7 +9,8 @@ static void	ft_calculate_heat_weight(t_game *game)
 
 int		ft_put_piece(t_game *game, int round)
 {
-	ft_calculate_heat_weight(game);
-	ft_put_stratmap(*game, round);
+	(void)round;
+	ft_calc_heat_weight(game);
+	//ft_put_stratmap(*game, round);
 	return (0);
 }
