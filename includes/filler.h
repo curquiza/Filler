@@ -56,4 +56,11 @@ void	ft_delete_all(t_game *game);
 
 void	ft_put_stratmap(t_game game, int round);
 
+/*
+** To test
+*/
+void	ft_first_init_strat_map(t_game *game);
+void	ft_init_strat_map(t_game *game, char *gross_map);
+void	ft_calc_heat_weight(t_game *game);
+
 #endif

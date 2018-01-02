@@ -59,11 +59,14 @@ static void	ft_put_init(t_game game)
 	ft_putendl2_fd("\nGROSS_MAP :\n", game.gross_map, 1);
 }
 
-static void	ft_calc_heat_weight(t_game *game)
+static void	ft_init(t_game *game, char *av, char *coin)
 {
-	ft_first_heat_calc(game);
-	ft_fill_heat_1(game);
-	ft_fill_heat_2(game);
+	if (ft_read_input(game, av) == -1)
+		ft_exit("Read error", 2);
+	ft_get_coin(game, coin);
+	ft_first_init_strat_map(game);
+	ft_init_strat_map(game, game->gross_map);
+	ft_put_init(*game);
 }
 
 int		main(int ac, char **av)
@@ -72,10 +75,7 @@ int		main(int ac, char **av)
 	
 	if (ac <= 1)
 		ft_exit("No input", 2);
-	if (ft_read_input(&game, av[1]) == -1)
-		ft_exit("Read error", 2);
-	ft_get_coin(&game, av[2]);
-	ft_put_init(game);
+	ft_init(&game, av[1], av[2]);
 	ft_calc_heat_weight(&game);
 	return (0);
 }

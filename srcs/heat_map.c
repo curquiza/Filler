@@ -22,7 +22,6 @@ void		ft_first_heat_calc(t_game *game)
 	int		max_val;
 
 	max_val = ft_max(game->h_map, game->w_map) * 4;
-	ft_putnbr_fd(max_val, 2);
 	i = 0;
 	while (i < game->h_map)
 	{
