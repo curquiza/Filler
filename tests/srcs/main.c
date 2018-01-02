@@ -57,6 +57,12 @@ static void	ft_put_init(t_game game)
 	ft_putnbr2("h_map = ", game.h_map);
 	ft_putnbr2("w_map = ", game.w_map);
 	ft_putendl2_fd("\nGROSS_MAP :\n", game.gross_map, 1);
+	ft_putendl("STRAT_MAP COORD:");
+	ft_put_stratmap_coord(game, 1);
+	ft_putchar('\n');
+	ft_putendl("STRAT_MAP VALUE:");
+	ft_put_stratmap_value(game, 1);
+	ft_putchar('\n');
 }
 
 static void	ft_init(t_game *game, char *av, char *coin)
@@ -77,5 +83,7 @@ int		main(int ac, char **av)
 		ft_exit("No input", 2);
 	ft_init(&game, av[1], av[2]);
 	ft_calc_heat_weight(&game);
+	ft_putendl("STRAT_MAP HEAT:");
+	ft_put_stratmap_heat(game, 1);
 	return (0);
 }
