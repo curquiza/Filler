@@ -14,7 +14,7 @@ int		main(void)
 	{
 		if (ft_get_data(&game) == -1)
 			break ;
-		if (ft_put_piece(&game, round) == -1)
+		if (ft_find_placement(&game, round) == -1)
 			break ;
 		else
 			ft_printf("%d %d\n", 12, 14);
