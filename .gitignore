@@ -2,5 +2,6 @@
 **/**/*.a
 **/**/*.swp
 curquiza.filler
+tests/libfiller.a
 **/**/debug_*
 **/**/filler.trace

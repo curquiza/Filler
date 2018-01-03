@@ -82,7 +82,7 @@ static int		ft_get_piece(t_game *game)
 	return (0);
 }
 
-static void	ft_init_strat_map(t_game *game, char *gross_map)
+void	ft_init_strat_map(t_game *game, char *gross_map)
 {
 	int		i;
 	int		j;
