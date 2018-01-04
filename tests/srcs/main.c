@@ -85,5 +85,7 @@ int		main(int ac, char **av)
 	ft_calc_heat_weight(&game);
 	ft_putendl("STRAT_MAP HEAT:");
 	ft_put_stratmap_heat(game, 1);
+	ft_putendl("\nSTRAT_MAP WEIGHT:");
+	ft_put_stratmap_weight(game, 1);
 	return (0);
 }
