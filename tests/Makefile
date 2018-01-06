@@ -38,15 +38,15 @@ libfiller :
 	@make -C $(PROJ_DIR) $(PROJ_LIB)
 	@echo "\033[1;31m-- TEST OBJ --------------------\033[0m"
 
-$(NAME) : $(LIBFT) libfiller $(O_FILES) 
+$(NAME) : $(LIBFT) libfiller $(O_FILES)
 	@echo "\033[1;31m-- EXEC ------------------------\033[0m"
 	@$(CC) $(O_FILES) -o $@ $(LIB)
-	@printf  "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
+	@printf "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
 
 $(O_DIR)/%.o: $(C_DIR)/%.c $(H_DIR)
 	@mkdir -p $(O_DIR)
 	@$(CC) -o $@ -c $< $(INCL)
-	@printf  "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
+	@printf "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
 
 clean :
 	@make clean -C $(LIBFT_DIR)
