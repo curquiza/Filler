@@ -63,4 +63,13 @@ void	ft_put_stratmap(t_game game, int round)
 	ft_putendl_fd("HEAT: ", fd);
 	ft_put_stratmap_heat(game, fd);
 	ft_putchar_fd('\n', fd);
+	ft_putendl_fd("PIECE: ", fd);
+	ft_putstr_fd("h = ", fd);
+	ft_putnbr_fd(game.h_piece, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("w = ", fd);
+	ft_putnbr_fd(game.w_piece, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putendl_fd(game.piece, fd);
+	ft_putendl_fd("-------------------------\n", fd);
 }

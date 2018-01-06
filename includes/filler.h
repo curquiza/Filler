@@ -32,12 +32,12 @@ typedef struct	s_game
 	int		pos_y;
 }				t_game;
 
-typedef struct	s_heat_map
-{
-	int		side;
-	int		diag;
-	int		heat;
-}				t_heat_map;
+//typedef struct	s_heat_map
+//{
+//	int		side;
+//	int		diag;
+//	int		heat;
+//}				t_heat_map;
 
 /*
 ** Tools

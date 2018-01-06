@@ -71,6 +71,8 @@ void	ft_first_init_strat_map(t_game *game)
 
 int		ft_first_init(t_game *game)
 {
+	game->pos_x = -1;
+	game->pos_y = -1;
 	if (ft_get_coin(game) == -1)
 		return (-1);
 	if (ft_get_map_size(game) == -1)
