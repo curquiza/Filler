@@ -24,6 +24,31 @@ void	ft_put_stratmap_heat(t_game game, int fd)
 	}
 }
 
+void	ft_put_stratmap_weight(t_game game, int fd)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < game.h_map)
+	{
+		j = 0;
+		while (j < game.w_map)
+		{
+			if (ft_is_me(game, game.strat_map[i][j].value)
+				|| ft_is_opp(game, game.strat_map[i][j].value))
+				ft_putchar_fd(game.strat_map[i][j].value, fd);
+			else
+				//ft_putnbr_fd(game.strat_map[i][j].weight, fd);
+				dprintf(fd, "%.2f", game.strat_map[i][j].weight);
+			ft_putchar_fd('\t', fd);
+			j++;
+		}
+		ft_putchar_fd('\n', fd);
+		i++;
+	}
+}
+
 void	ft_put_stratmap(t_game game, int round)
 {
 	int		fd;

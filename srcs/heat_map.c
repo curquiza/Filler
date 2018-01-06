@@ -90,12 +90,14 @@ void		ft_fill_heat_2(t_game *game)
 		j = game->w_map - 1;
 		while (j >= 0)
 		{
-			if (game->strat_map[i][j].heat == 0
-				&& !ft_is_opp(*game, game->strat_map[i][j].value))
-				//&& ft_is_empty(game->strat_map[i][j].value))
+			if (!ft_is_opp(*game, game->strat_map[i][j].value))
+				// ft_is_empty(game->strat_map[i][j].value))
 			{
-				if ((side_val = ft_get_side_val(game, i, j)) > 0)
+				if (game->strat_map[i][j].heat == 0
+					&& (side_val = ft_get_side_val(game, i, j)) > 0)
 					game->strat_map[i][j].heat = side_val - 1;
+				ft_calc_weight(&game->strat_map[i][j],
+								game->h_map, game->w_map);
 			}
 			j--;
 		}
