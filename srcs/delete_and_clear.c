@@ -41,6 +41,7 @@ static void	ft_clear_strat_map(t_game *game)
 void	ft_clear_all(t_game *game)
 {
 	ft_strdel(&game->piece);
+	game->place_found = 0;
 	game->pos_x = 0;
 	game->pos_y = 0;
 	game->h_piece = 0;

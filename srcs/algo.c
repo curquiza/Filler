@@ -29,21 +29,21 @@ int 	ft_calc_score(t_game game, int i, int j)
 	init_j = j;
 	while (*game.piece)
 	{
-		if (game.piece == '*')
+		if (*game.piece == '*')
 		{
-			if (j >= game.w || i >= game.w)
+			if (j >= game.w_map || i >= game.h_map)
 				return (0);
 			if (ft_is_me(game, game.strat_map[i][j].value) && my_coin == 0)
-				my_coin = 1
+				my_coin = 1;
 			else if (ft_is_me(game, game.strat_map[i][j].value) && my_coin == 1)
 				return (0);
 			else if (ft_is_opp(game, game.strat_map[i][j].value))
 				return (0);
-			else if (ft_is_empty(game, game.strat_map[i][j].value))
+			else if (ft_is_empty(game.strat_map[i][j].value))
 				score += game.strat_map[i][j].weight;
 		}
 		game.piece++;
-		ft_deplacement(*game.piece, i, j, init_j);
+		ft_deplacement(*game.piece, &i, &j, init_j);
 	}
 	return (score);
 }
@@ -65,6 +65,7 @@ void	ft_get_place(t_game *game)
 			{
 				game->pos_x = i;
 				game->pos_y = j;
+				game->place_found = 1;
 			}
 			j++;
 		}
@@ -73,12 +74,13 @@ void	ft_get_place(t_game *game)
 }
 
 
-int		ft_find_placement(t_game *game, int round)
+int		ft_put_piece(t_game *game, int round)
 {
 	ft_calc_heat_weight(game);
 	ft_put_stratmap(*game, round);
 	ft_get_place(game);
-	if (game->pos_x == -1)
+	ft_printf("%d %d\n", game->pos_y, game->pos_x);
+	if (game->place_found == 0)
 		return (-1);
 	return (0);
 }

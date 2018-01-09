@@ -30,6 +30,7 @@ typedef struct	s_game
 	int		w_piece;
 	int		pos_x;
 	int		pos_y;
+	int		place_found;
 }				t_game;
 
 //typedef struct	s_heat_map
@@ -54,7 +55,7 @@ int		ft_max(int a, int b);
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 
-int		ft_find_placement(t_game *game, int round);
+int		ft_put_piece(t_game *game, int round);
 
 void	ft_first_heat_calc(t_game *game);
 void	ft_fill_heat_1(t_game *game);
