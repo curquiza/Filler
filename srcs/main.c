@@ -16,8 +16,6 @@ int		main(void)
 			break ;
 		if (ft_put_piece(&game, round) == -1)
 			break ;
-		//else
-		//	ft_printf("%d %d\n", 12, 14);
 		ft_clear_all(&game);
 		round++;
 	}
