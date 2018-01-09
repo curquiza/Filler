@@ -31,7 +31,7 @@ float	ft_calc_score(t_game game, int i, int j)
 	{
 		if (*game.piece == '*')
 		{
-			if (j >= game.w_map || i >= game.h_map)
+			if (j >= game.w_map || i >= game.h_map || j < 0 || i < 0)
 			{
 				//ft_putendl_fd("Map out", 2);
 				return (0);
@@ -58,8 +58,8 @@ float	ft_calc_score(t_game game, int i, int j)
 	{
 		//ft_putendl_fd("yeah", 2);
 		//ft_putstr_fd("score is : ", 2);
-		ft_putnbr_fd(score, 2);
-		ft_putchar_fd('\n', 2);
+		//ft_putnbr_fd(score, 2);
+		//ft_putchar_fd('\n', 2);
 		return (score);
 	}
 	else
@@ -78,10 +78,10 @@ void	ft_get_place(t_game *game)
 	float	tmp;
 
 	best_score = 0;
-	i = 0;
+	i = 0 - game->h_piece;
 	while (i < game->h_map)
 	{
-		j = 0;
+		j = 0 - game->w_piece;
 		while (j < game->w_map)
 		{
 			//ft_putstr_fd("i = ", 2);
