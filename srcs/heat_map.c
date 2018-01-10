@@ -28,7 +28,8 @@ void		ft_first_heat_calc(t_game *game)
 		j = 0;
 		while (j < game->w_map)
 		{
-			if (ft_is_empty(game->strat_map[i][j].value)
+			if (//ft_is_empty(game->strat_map[i][j].value)
+				!ft_is_opp(*game, game->strat_map[i][j].value)
 				&& ft_has_opp_side(*game, i, j))
 				game->strat_map[i][j].heat = max_val;
 			j++;

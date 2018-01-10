@@ -79,6 +79,7 @@ int		main(int ac, char **av)
 {
 	t_game game;
 	
+	ft_bzero(&game, sizeof(game));
 	if (ac <= 1)
 		ft_exit("No input", 2);
 	ft_init(&game, av[1], av[2]);

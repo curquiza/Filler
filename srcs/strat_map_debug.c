@@ -11,8 +11,8 @@ void	ft_put_stratmap_heat(t_game game, int fd)
 		j = 0;
 		while (j < game.w_map)
 		{
-			if (ft_is_me(game, game.strat_map[i][j].value)
-				|| ft_is_opp(game, game.strat_map[i][j].value))
+			if (ft_is_opp(game, game.strat_map[i][j].value))
+				//|| ft_is_me(game, game.strat_map[i][j].value))
 				ft_putchar_fd(game.strat_map[i][j].value, fd);
 			else
 				ft_putnbr_fd(game.strat_map[i][j].heat, fd);
@@ -63,4 +63,13 @@ void	ft_put_stratmap(t_game game, int round)
 	ft_putendl_fd("HEAT: ", fd);
 	ft_put_stratmap_heat(game, fd);
 	ft_putchar_fd('\n', fd);
+	ft_putendl_fd("PIECE: ", fd);
+	ft_putstr_fd("h = ", fd);
+	ft_putnbr_fd(game.h_piece, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("w = ", fd);
+	ft_putnbr_fd(game.w_piece, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putendl_fd(game.piece, fd);
+	ft_putendl_fd("-------------------------\n", fd);
 }
