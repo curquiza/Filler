@@ -11,8 +11,8 @@ void	ft_put_stratmap_heat(t_game game, int fd)
 		j = 0;
 		while (j < game.w_map)
 		{
-			if (ft_is_opp(game, game.strat_map[i][j].value))
-				//|| ft_is_me(game, game.strat_map[i][j].value))
+			if (ft_is_opp(game, game.strat_map[i][j].value)
+				|| ft_is_me(game, game.strat_map[i][j].value))
 				ft_putchar_fd(game.strat_map[i][j].value, fd);
 			else
 				ft_putnbr_fd(game.strat_map[i][j].heat, fd);
