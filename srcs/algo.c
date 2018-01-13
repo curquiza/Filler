@@ -84,6 +84,7 @@ int		ft_put_piece(t_game *game, int round)
 	ft_put_stratmap(*game, round); // debug
 	ft_get_place(game);
 	ft_printf("%d %d\n", game->pos_x, game->pos_y);
+	ft_put_best_place(game->pos_x, game->pos_y); // debug
 	if (game->place_found == 0)
 		return (-1);
 	return (0);
