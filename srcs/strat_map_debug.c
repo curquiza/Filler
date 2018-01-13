@@ -39,8 +39,7 @@ void	ft_put_stratmap_weight(t_game game, int fd)
 				|| ft_is_opp(game, game.strat_map[i][j].value))
 				ft_putchar_fd(game.strat_map[i][j].value, fd);
 			else
-				//ft_putnbr_fd(game.strat_map[i][j].weight, fd);
-				dprintf(fd, "%.2f", game.strat_map[i][j].weight);
+				dprintf(fd, "%.2f", game.strat_map[i][j].weight); // WARNING
 			ft_putchar_fd('\t', fd);
 			j++;
 		}
@@ -57,6 +56,8 @@ void	ft_put_stratmap(t_game game, int round)
 		fd = open("debug_strat_map", O_RDWR | O_CREAT | O_TRUNC, 0666);
 	else
 		fd = open("debug_strat_map", O_RDWR | O_CREAT | O_APPEND, 0666);
+	if (fd < 0 )
+		return ;
 	ft_putstr_fd("ROUND: ", fd);
 	ft_putnbr_fd(round, fd);
 	ft_putchar_fd('\n', fd);
@@ -72,4 +73,22 @@ void	ft_put_stratmap(t_game game, int round)
 	ft_putchar_fd('\n', fd);
 	ft_putendl_fd(game.piece, fd);
 	ft_putendl_fd("-------------------------\n", fd);
+	close(fd);
+}
+
+void	ft_put_place_score(int score, int i, int j)
+{
+	int		fd;
+
+	fd = open("debug_strat_map", O_RDWR | O_CREAT | O_APPEND, 0666);
+	if (fd < 0 )
+		return ;
+	ft_putstr_fd("i = ", fd);
+	ft_putnbr_fd(i, fd);
+	ft_putstr_fd("; j = ", fd);
+	ft_putnbr_fd(j, fd);
+	ft_putstr_fd(" --> ", fd);
+	ft_putnbr_fd(score, fd);
+	ft_putchar_fd('\n', fd);
+	close(fd);
 }
