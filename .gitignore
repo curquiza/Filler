@@ -4,6 +4,6 @@
 curquiza.filler
 tests/libfiller.a
 **/**/debug_*
-**/**/recap
 **/**/filler.trace
+**/**/RESULTS.txt
 tests/tests
