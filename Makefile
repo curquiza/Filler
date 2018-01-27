@@ -14,6 +14,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 		  algo.c \
 		  heat_map.c \
 		  calc_weight.c \
+		  init_debug.c \
 		  main.c)
 
 O_DIR = objs

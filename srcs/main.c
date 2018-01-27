@@ -19,7 +19,6 @@ int		main(void)
 		ft_clear_all(&game);
 		round++;
 	}
-	ft_put_recap(game); // debug
 	ft_delete_all(&game);
 	//while (1);
 	return (0);
