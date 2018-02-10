@@ -7,3 +7,5 @@ tests/libfiller.a
 **/**/filler.trace
 **/**/RESULTS.txt
 tests/tests
+**/**/filler_test_debug
+**/**/filler_test_rslt.txt
