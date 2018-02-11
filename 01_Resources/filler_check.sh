@@ -108,15 +108,15 @@ init_basenames() {
 }
 
 del_old_files() {
-	rm -rf $debug_folder #correction
-	rm -rf $rslt_file #correction
+	rm -rf $debug_folder
+	rm -rf $rslt_file
 }
 
 init() {
 	check_vm
 	options_parsing $@
 	check_parameters
-	del_old_files
+	if [ $correction_opt -eq 0 ] ; then del_old_files ; fi
 	init_basenames
 }
 
@@ -159,7 +159,7 @@ run_games() {
 }
 
 init $@
-print_title #correction
+if [ $correction_opt -eq 0 ] ; then print_title ; fi #correction
 print_game_start
 run_games
 if [ $alternate_opt -eq 1 ] ; then
