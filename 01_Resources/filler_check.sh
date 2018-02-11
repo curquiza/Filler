@@ -60,7 +60,6 @@ options_parsing() {
 			g)	games=$OPTARG
 				;;
 			a)	alternate_opt=1
-				echo 'a'
 				;;
 			c)	correction_opt=1
 				;;
@@ -140,7 +139,16 @@ copy_debug() {
 
 ## MAIN FUNCTIONS ##############################################################
 
-run_games_p1() {
+switch_players() {
+	local tmp_player=$p1
+	local tmp_basename=$p1_basename
+	p1=$p2
+	p1_basename=$p2_basename
+	p2=$tmp_player
+	p2_basename=$tmp_basename
+}
+
+run_games() {
 	for i in `seq 1 $games`
 	do
 		init_debug_path $i
@@ -153,4 +161,9 @@ run_games_p1() {
 init $@
 print_title #correction
 print_game_start
-run_games_p1 #alt
+run_games
+if [ $alternate_opt -eq 1 ] ; then
+	switch_players
+	print_game_start
+	run_games
+fi
