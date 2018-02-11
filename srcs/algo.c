@@ -32,42 +32,20 @@ float	ft_calc_score(t_game game, int i, int j)
 		if (*game.piece == '*')
 		{
 			if (j >= game.w_map || i >= game.h_map || j < 0 || i < 0)
-			{
-				//ft_putendl_fd("Map out", 2);
 				return (0);
-			}
 			if (ft_is_me(game, game.strat_map[i][j].value) && my_coin == 0)
 				my_coin = 1;
 			else if (ft_is_me(game, game.strat_map[i][j].value) && my_coin == 1)
-			{
-				//ft_putendl_fd("my_coin twice", 2);
 				return (0);
-			}
 			else if (ft_is_opp(game, game.strat_map[i][j].value))
-			{
-				//ft_putendl_fd("opp_coin", 2);
 				return (0);
-			}
 			else if (ft_is_empty(game.strat_map[i][j].value))
 				score += game.strat_map[i][j].weight;
 		}
 		ft_deplacement(*game.piece, &i, &j, init_j);
 		game.piece++;
 	}
-	if (my_coin == 1)
-	{
-		//ft_putendl_fd("yeah", 2);
-		//ft_putstr_fd("score is : ", 2);
-		//ft_putnbr_fd(score, 2);
-		//ft_putchar_fd('\n', 2);
-		return (score);
-	}
-	else
-	{
-		//ft_putendl_fd("no my_coin", 2);
-		return (0);
-	}
-	//return (my_coin == 1 ? score : 0);
+	return (my_coin == 1 ? score : 0);
 }
 
 void	ft_get_place(t_game *game)
@@ -84,23 +62,16 @@ void	ft_get_place(t_game *game)
 		j = 0 - game->w_piece;
 		while (j < game->w_map)
 		{
-			//ft_putstr_fd("i = ", 2);
-			//ft_putnbr_fd(i, 2);
-			//ft_putchar_fd('\n', 2);
-			//ft_putstr_fd("j = ", 2);
-			//ft_putnbr_fd(j, 2);
-			//ft_putchar_fd('\n', 2);
-			if ((tmp = ft_calc_score(*game, i, j)) > best_score)
+			tmp = ft_calc_score(*game, i, j);
+			if (tmp != 0)
+				ft_put_place_score(tmp, i, j); // debug
+			if (tmp > best_score)
 			{
-			//	ft_putendl_fd("FOUND", 2);
-			//	ft_putnbr_fd(tmp, 2);
-			//	ft_putchar_fd('\n', 2);
 				best_score = tmp;
 				game->pos_x = i;
 				game->pos_y = j;
 				game->place_found = 1;
 			}
-			//	ft_putendl_fd("-----", 2);
 			j++;
 		}
 		i++;
@@ -110,14 +81,10 @@ void	ft_get_place(t_game *game)
 int		ft_put_piece(t_game *game, int round)
 {
 	ft_calc_heat_weight(game);
-	ft_put_stratmap(*game, round);
+	ft_put_stratmap(*game, round); // debug
 	ft_get_place(game);
-	//ft_putstr_fd("pos_x = ", 2);
-	//ft_putnbr_fd(game->pos_x, 2);
-	//ft_putstr_fd("\npos_y = ", 2);
-	//ft_putnbr_fd(game->pos_y, 2);
-	//ft_putchar_fd('\n', 2);
 	ft_printf("%d %d\n", game->pos_x, game->pos_y);
+	ft_put_best_place(game->pos_x, game->pos_y); // debug
 	if (game->place_found == 0)
 		return (-1);
 	return (0);

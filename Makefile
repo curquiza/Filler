@@ -7,7 +7,6 @@ CC = gcc -Wall -Wextra -Werror
 C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
 		  tools.c \
-		  init_debug.c \
 		  strat_map_debug.c \
 		  get_data.c \
 		  first_init.c \
@@ -15,6 +14,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 		  algo.c \
 		  heat_map.c \
 		  calc_weight.c \
+		  init_debug.c \
 		  main.c)
 
 O_DIR = objs
