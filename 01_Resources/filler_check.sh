@@ -74,29 +74,28 @@ options_parsing() {
 }
 
 check_parameters() {
-	err=0
+	local err=0
 	if [ ! -f $map ] || [ -z $map ] ; then
 		error_file 'map'
-		err=1
+		local err=1
 	fi
 	if [ ! -f $p1 ] || [ -z $p1 ] ; then
 		error_file 'player 1'
-		err=1
+		local err=1
 	fi
 	if [ ! -f $p2 ] || [ -z $p2 ] ; then
 		error_file 'player 2'
-		err=1
+		local err=1
 	fi
 	reg='^[0-9]+$'
 	if ! [[ $games =~ $reg ]] ; then
-		echo "Number of games must be a numeric value"
-		err=1
+		echo "Number of games must be a positiv numeric value"
+		local err=1
 	elif [ $games -gt 100 ] || [ $games -le 0 ]  ; then
 		echo "The number of games must be greater than 0 and less than 100"
-		err=1
+		local err=1
 	fi
 	if [ $err -eq 1 ] ; then
-		echo "on se casse"
 		exit
 	fi
 }
