@@ -1,3 +1,5 @@
+#include "filler.h"
+
 void	ft_put_stratmap_weight(t_game game, int fd)
 {
 	int		i;
