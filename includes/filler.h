@@ -70,6 +70,7 @@ void	ft_delete_all(t_game *game);
 ** Debug
 */
 void	ft_init_debug(t_game game);
+void	ft_put_stratmap_heat(t_game game, int fd);
 void	ft_put_place_score(int score, int i, int j);
 void	ft_put_best_place(int i, int j);
 void	ft_put_stratmap(t_game game, int round);
@@ -82,7 +83,6 @@ void	ft_init_strat_map(t_game *game, char *gross_map);
 void	ft_calc_heat_weight(t_game *game);
 void	ft_put_stratmap_value(t_game game, int fd);
 void	ft_put_stratmap_coord(t_game game, int fd);
-void	ft_put_stratmap_heat(t_game game, int fd);
 void	ft_put_stratmap_weight(t_game game, int fd);
 
 #endif

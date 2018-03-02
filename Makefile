@@ -5,17 +5,24 @@ CC = gcc -Wall -Wextra -Werror
 #CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
 C_DIR = srcs
-C_FILES = $(addprefix $(C_DIR)/, \
+ifeq ($(DEBUG), 1)
+  C_DEBUG_FILE = $(C_DIR)/debug_files_on.c
+else
+  C_DEBUG_FILE = $(C_DIR)/debug_files_off.c
+endif
+C_OTHER_FILES = $(addprefix $(C_DIR)/, \
+			only_for_tests.c \
 		  tools.c \
-		  strat_map_debug.c \
 		  get_data.c \
 		  first_init.c \
 		  delete_and_clear.c \
 		  algo.c \
 		  heat_map.c \
 		  calc_weight.c \
-		  init_debug.c \
 		  main.c)
+C_FILES = $(C_DEBUG_FILE) \
+					$(C_OTHER_FILES)
+
 
 O_DIR = objs
 O_FILES = $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
@@ -24,7 +31,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 H_DIR = includes
 
-PROJ_LIB = libfiller.a
+# PROJ_LIB = libfiller.a
 
 LIB = -L$(LIBFT_DIR) -lft
 INCL = -I$(H_DIR) -I$(LIBFT_DIR)/includes
@@ -33,7 +40,7 @@ INCL = -I$(H_DIR) -I$(LIBFT_DIR)/includes
 #################################### RULES #####################################
 ################################################################################
 
-all : $(NAME)
+all : debug $(NAME)
 
 $(LIBFT) :
 	@echo "\033[1;31m-- LIBFT ----------------------\033[0m"
@@ -61,8 +68,15 @@ fclean : clean
 
 re : fclean all
 
-$(PROJ_LIB): $(O_FILES)
-	@ar rc tests/$@ $(O_FILES)
-	@ranlib tests/$(PROJ_LIB)
+# $(PROJ_LIB): $(O_FILES)
+# 	@ar rc tests/$@ $(O_FILES)
+# 	@ranlib tests/$(PROJ_LIB)
+
+debug:
+ifeq ($(DEBUG), 1)
+	@rm -rf $(O_DIR)/debug_files_off.o
+else
+	@rm -rf $(O_DIR)/debug_files_on.o
+endif
 
 .PHONY : clean all fclean re

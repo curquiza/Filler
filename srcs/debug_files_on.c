@@ -24,30 +24,6 @@ void	ft_put_stratmap_heat(t_game game, int fd)
 	}
 }
 
-void	ft_put_stratmap_weight(t_game game, int fd)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < game.h_map)
-	{
-		j = 0;
-		while (j < game.w_map)
-		{
-			if (ft_is_me(game, game.strat_map[i][j].value)
-				|| ft_is_opp(game, game.strat_map[i][j].value))
-				ft_putchar_fd(game.strat_map[i][j].value, fd);
-			else
-				dprintf(fd, "%.2f", game.strat_map[i][j].weight); // WARNING
-			ft_putchar_fd('\t', fd);
-			j++;
-		}
-		ft_putchar_fd('\n', fd);
-		i++;
-	}
-}
-
 void	ft_put_stratmap(t_game game, int round)
 {
 	int		fd;
@@ -109,4 +85,23 @@ void	ft_put_best_place(int i, int j)
 	ft_putchar_fd('\n', fd);
 	close(fd);
 }
-	
+
+void	ft_init_debug(t_game game)
+{
+	int		fd;
+
+	fd = open("debug_init", O_RDWR | O_CREAT | O_TRUNC, 0666);
+	ft_putstr_fd("my_coin : ", fd);
+	ft_putchar_fd(game.my_coin, fd);
+	ft_putendl_fd("", fd);
+	ft_putstr_fd("opp_coin : ", fd);
+	ft_putchar_fd(game.opp_coin, fd);
+	ft_putendl_fd("", fd);
+	ft_putstr_fd("h_map : ", fd);
+	ft_putnbr_fd(game.h_map, fd);
+	ft_putendl_fd("", fd);
+	ft_putstr_fd("w_map : ", fd);
+	ft_putnbr_fd(game.w_map, fd);
+	ft_putendl_fd("", fd);
+	close(fd);
+}
