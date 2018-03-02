@@ -18,7 +18,7 @@ error_maps() 	{ echo "Folder maps is missing"; }
 error_script() 	{ echo "File filler_check.sh is missing"; }
 error_binary() 	{ echo "Binary invalid"; }
 
-print_usage() { echo 'Usage: sh correction.sh -b [your_binary] [ -a ]'; }
+print_usage() { echo 'Usage: sh filler_correction.sh -b [your_binary] [ -a ]'; }
 
 error_exit() {
 	($1 1>&2)
