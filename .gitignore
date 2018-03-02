@@ -3,7 +3,8 @@
 **/**/*.swp
 curquiza.filler
 tests/libfiller.a
-**/**/debug_*
+**/**/debug_init
+**/**/debug_strat_map
 **/**/filler.trace
 **/**/RESULTS.txt
 tests/tests
