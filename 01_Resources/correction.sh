@@ -2,8 +2,15 @@
 
 bin=""
 reverse_opt=0
+rslt_file="rslt.txt"
 
 # INIT AND PARSING #############################################################
+
+print_title() {
+	echo "*************************************" | tee $rslt_file 
+	echo "***** FILLER_CORRECTION RESULTS *****" | tee -a $rslt_file
+	echo "*************************************" | tee -a $rslt_file
+}
 
 error_vm() 		{ echo "File filler_vm is missing"; }
 error_players() { echo "Folder players is missing"; }
@@ -65,12 +72,31 @@ check_parameters() {
 	fi
 }
 
+clean() {
+	rm -rf trace rslt.txt
+}
+
 init() {
 	check_presence
 	options_parsing $@
 	check_parameters
+	clean
 }
 
 # MAIN #########################################################################
 
+run_correction() {
+	for player in players/*.filler ; do
+		for map in maps/* ; do
+			if [ $reverse_opt -eq 1 ] ; then
+				sh filler_check.sh -2 $bin -1 $player -m $map -g 5 -c
+			else
+				sh filler_check.sh -1 $bin -2 $player -m $map -g 5 -c
+			fi
+		done
+	done
+}
+
 init $@
+print_title
+run_correction
