@@ -15,7 +15,15 @@ typedef struct	s_map
 	float	weight;
 	int		heat;
 	int		border;
-}				t_map;
+}					t_map;
+
+typedef struct s_border
+{
+	int top;
+	int bottom;
+	int left;
+	int right;
+}					t_border;
 
 typedef struct	s_game
 {
@@ -31,6 +39,7 @@ typedef struct	s_game
 	int		pos_x;
 	int		pos_y;
 	int		place_found;
+	t_border	border;
 }				t_game;
 
 //typedef struct	s_heat_map
