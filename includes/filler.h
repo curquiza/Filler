@@ -64,6 +64,9 @@ int		ft_max(int a, int b);
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 
+void	ft_opposite_borders(t_game *game);
+void	ft_calc_border_weight(t_game *game);
+
 int		ft_put_piece(t_game *game, int round);
 
 void	ft_first_heat_calc(t_game *game);

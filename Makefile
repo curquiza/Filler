@@ -15,6 +15,7 @@ C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 		  tools.c \
 		  get_data.c \
 		  first_init.c \
+			border_map.c \
 		  delete_and_clear.c \
 		  algo.c \
 		  heat_map.c \

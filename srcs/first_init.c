@@ -69,20 +69,6 @@ void	ft_first_init_strat_map(t_game *game)
 	}
 }
 
-void ft_opposite_borders(t_game *game) // TEMPORAIRE !!!
-{
-	if (game->my_coin == 'o')
-	{
-		game->border.bottom = 1;
-		game->border.right = 1;
-	}
-	else
-	{
-		game->border.top = 1;
-		game->border.left = 1;
-	}
-}
-
 int		ft_first_init(t_game *game)
 {
 	ft_bzero(game, sizeof(game));
@@ -94,6 +80,7 @@ int		ft_first_init(t_game *game)
 				(game->h_map * game->w_map + game->h_map + 1));
 	ft_first_init_strat_map(game);
 	ft_opposite_borders(game);
+	ft_calc_border_weight(game);
 	ft_init_debug(*game); //debug
 	return (0);
 }
