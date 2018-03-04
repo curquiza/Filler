@@ -5,10 +5,8 @@ int		main(void)
 	t_game	game;
 	int		round;
 
-	ft_bzero(&game, sizeof(game));
 	if (ft_first_init(&game) == -1)
 		ft_exit("Read error", 2);
-	ft_init_debug(game); //debug
 	round = 1;
 	while (1)
 	{
@@ -20,6 +18,6 @@ int		main(void)
 		round++;
 	}
 	ft_delete_all(&game);
-	//while (1);
+	// while (1);
 	return (0);
 }

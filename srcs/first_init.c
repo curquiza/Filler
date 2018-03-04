@@ -85,6 +85,7 @@ void ft_opposite_borders(t_game *game) // TEMPORAIRE !!!
 
 int		ft_first_init(t_game *game)
 {
+	ft_bzero(game, sizeof(game));
 	if (ft_get_coin(game) == -1)
 		return (-1);
 	if (ft_get_map_size(game) == -1)
@@ -93,5 +94,6 @@ int		ft_first_init(t_game *game)
 				(game->h_map * game->w_map + game->h_map + 1));
 	ft_first_init_strat_map(game);
 	ft_opposite_borders(game);
+	ft_init_debug(*game); //debug
 	return (0);
 }
