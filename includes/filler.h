@@ -15,30 +15,30 @@ typedef struct	s_map
 	float	weight;
 	int		heat;
 	int		border;
-}					t_map;
+}				t_map;
 
-typedef struct s_border
+typedef struct	s_border
 {
 	int top;
 	int bottom;
 	int left;
 	int right;
-}					t_border;
+}				t_border;
 
 typedef struct	s_game
 {
-	char	my_coin;
-	char	opp_coin;
-	int		h_map;
-	int		w_map;
-	char	*gross_map;
-	t_map	**strat_map;
-	char	*piece;
-	int		h_piece;
-	int		w_piece;
-	int		pos_x;
-	int		pos_y;
-	int		place_found;
+	char		my_coin;
+	char		opp_coin;
+	int			h_map;
+	int			w_map;
+	char		*gross_map;
+	t_map		**strat_map;
+	char		*piece;
+	int			h_piece;
+	int			w_piece;
+	int			pos_x;
+	int			pos_y;
+	int			place_found;
 	t_border	border;
 }				t_game;
 
