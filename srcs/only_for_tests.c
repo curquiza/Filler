@@ -1,28 +1,28 @@
 #include "filler.h"
 
-void	ft_put_stratmap_weight(t_game game, int fd)
-{
-	int		i;
-	int		j;
+// void	ft_put_stratmap_weight(t_game game, int fd)
+// {
+// 	int		i;
+// 	int		j;
 
-	i = 0;
-	while (i < game.h_map)
-	{
-		j = 0;
-		while (j < game.w_map)
-		{
-			if (ft_is_me(game, game.strat_map[i][j].value)
-				|| ft_is_opp(game, game.strat_map[i][j].value))
-				ft_putchar_fd(game.strat_map[i][j].value, fd);
-			else
-				dprintf(fd, "%.2f", game.strat_map[i][j].weight); // WARNING
-			ft_putchar_fd('\t', fd);
-			j++;
-		}
-		ft_putchar_fd('\n', fd);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < game.h_map)
+// 	{
+// 		j = 0;
+// 		while (j < game.w_map)
+// 		{
+// 			if (ft_is_me(game, game.strat_map[i][j].value)
+// 				|| ft_is_opp(game, game.strat_map[i][j].value))
+// 				ft_putchar_fd(game.strat_map[i][j].value, fd);
+// 			else
+// 				dprintf(fd, "%.2f", game.strat_map[i][j].weight); // WARNING
+// 			ft_putchar_fd('\t', fd);
+// 			j++;
+// 		}
+// 		ft_putchar_fd('\n', fd);
+// 		i++;
+// 	}
+// }
 
 void	ft_put_stratmap_coord(t_game game, int fd)
 {
