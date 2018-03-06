@@ -31,7 +31,7 @@ static void	ft_clear_strat_map(t_game *game)
 			game->strat_map[i][j].value = 0;
 			game->strat_map[i][j].weight = 0;
 			game->strat_map[i][j].heat = 0;
-			game->strat_map[i][j].border = 0; // a faire dans l'init
+			// game->strat_map[i][j].border = 0; // a faire dans l'init
 			j++;
 		}
 		i++;
