@@ -1,6 +1,6 @@
 #include "filler.h"
 
-void ft_opposite_borders(t_game *game) // TEMPORAIRE !!!
+void	ft_opposite_borders(t_game *game) // TEMPORAIRE !!!
 {
 	if (game->my_coin == 'o')
 	{
@@ -14,7 +14,31 @@ void ft_opposite_borders(t_game *game) // TEMPORAIRE !!!
 	}
 }
 
-void ft_calc_border_weight(t_game *game)
+void	ft_fill_from_top(t_game *game)
 {
-  (void)game;
+	int		i;
+	int		j;
+	int		value;
+	int		max_border;
+
+	max_border = ft_max(game->h_map, game->w_map);
+	i = 0;
+	value = max_border;
+	while (i < game->h_map)
+	{
+		j = 0;
+		while (j < game->w_map)
+		{
+			game->strat_map[i][j].border += value;
+			j++;
+		}
+		i++;
+		value--;
+	}
+}
+
+void	ft_calc_border_weight(t_game *game)
+{
+	if (game->border.top == 1)
+		ft_fill_from_top(game);
 }
