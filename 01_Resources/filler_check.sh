@@ -8,6 +8,8 @@ correction_opt=0
 alternate_opt=0
 rslt_file="rslt.txt"
 debug_folder="trace"
+score_p1=0
+score_p2=0
 
 DEF='\e[m'
 YELLOW='\e[1;33m'
@@ -42,18 +44,16 @@ error_exit() {
 }
 
 print_final_rslt() {
-	local rslt_p1=`cat $rslt_file | grep $p1 | wc -l | tr -d ' '`
-	local rslt_p2=`cat $rslt_file | grep $p2 | wc -l | tr -d ' '`
 	local color_p1=$DEF
 	local color_p2=$DEF
-	if [ $rslt_p1 -ge $rslt_p2 ] ; then
+	if [ $score_p1 -ge $score_p2 ] ; then
 		local color_p1=$YELLOW
 	fi
-	if [ $rslt_p2 -ge $rslt_p1 ] ; then
+	if [ $score_p2 -ge $score_p1 ] ; then
 		local color_p2=$YELLOW
 	fi
-	printf "\n$color_p1%-10s %s/%s$DEF\n" $p1_basename $rslt_p1 $games | tee -a $rslt_file
-	printf "$color_p2%-10s %s/%s$DEF\n" $p2_basename $rslt_p2 $games | tee -a $rslt_file
+	printf "\n$color_p1%-10s %s/%s$DEF\n" $p1_basename $score_p1 $games | tee -a $rslt_file
+	printf "$color_p2%-10s %s/%s$DEF\n" $p2_basename $score_p2 $games | tee -a $rslt_file
 }
 
 ## INIT #########################################################################
@@ -166,6 +166,15 @@ switch_players() {
 	p2_basename=$tmp_basename
 }
 
+score_counter() {
+	if [ `cat filler.trace | grep $p1 | wc -l | tr -d ' '`  -gt 0 ] ; then
+		let score_p1=$score_p1+1
+	fi
+	if [ `cat filler.trace | grep $p2 | wc -l | tr -d ' '`  -gt 0 ] ; then
+		let score_p2=$score_p2+1
+	fi
+}
+
 run_games() {
 	for i in `seq 1 $games`
 	do
@@ -173,6 +182,7 @@ run_games() {
 		./filler_vm -f $map -p1 $p1 -p2 $p2 > "$debug_path/game.txt"
 		copy_debug
 		print_rslt
+		score_counter
 	done
 }
 
