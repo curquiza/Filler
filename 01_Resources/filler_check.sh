@@ -9,6 +9,9 @@ alternate_opt=0
 rslt_file="rslt.txt"
 debug_folder="trace"
 
+DEF='\e[m'
+YELLOW='\e[1;33m'
+
 ## TOOLS FUNCTIONS #############################################################
 
 print_title() {
@@ -39,12 +42,18 @@ error_exit() {
 }
 
 print_final_rslt() {
-	local rslt_p1
-	local rslt_p2
-	rslt_p1=`cat $rslt_file | grep $p1 | wc -l`
-	rslt_p2=`cat $rslt_file | grep $p2 | wc -l`
-	printf "\n%-10s %s/%s\n" $p1_basename $rslt_p1 $games | tee -a $rslt_file
-	printf "%-10s %s/%s\n" $p2_basename $rslt_p2 $games | tee -a $rslt_file
+	local rslt_p1=`cat $rslt_file | grep $p1 | wc -l | tr -d ' '`
+	local rslt_p2=`cat $rslt_file | grep $p2 | wc -l | tr -d ' '`
+	local color_p1=$DEF
+	local color_p2=$DEF
+	if [ $rslt_p1 -ge $rslt_p2 ] ; then
+		local color_p1=$YELLOW
+	fi
+	if [ $rslt_p2 -ge $rslt_p1 ] ; then
+		local color_p2=$YELLOW
+	fi
+	printf "\n$color_p1%-10s %s/%s$DEF\n" $p1_basename $rslt_p1 $games | tee -a $rslt_file
+	printf "$color_p2%-10s %s/%s$DEF\n" $p2_basename $rslt_p2 $games | tee -a $rslt_file
 }
 
 ## INIT #########################################################################
