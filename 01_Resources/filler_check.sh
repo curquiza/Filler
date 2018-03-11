@@ -176,4 +176,4 @@ if [ $alternate_opt -eq 1 ] ; then
 	print_game_start
 	run_games
 fi
-if [ $correction_opt -eq 0 ] ; then print_final_rslt ; fi #correction
+print_final_rslt
