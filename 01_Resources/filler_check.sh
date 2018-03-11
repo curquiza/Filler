@@ -109,7 +109,7 @@ check_parameters() {
 		echo "Number of games must be a positiv numeric value"
 		local err=1
 	elif [ $games -gt 100 ] || [ $games -le 0 ]  ; then
-		echo "The number of games must be greater than 0 and less than 100"
+		echo "The number of games must be greater than 0 and less or equal than 100"
 		local err=1
 	fi
 	if [ $err -eq 1 ] ; then
