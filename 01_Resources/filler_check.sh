@@ -190,9 +190,12 @@ init $@
 if [ $correction_opt -eq 0 ] ; then print_title ; fi #correction
 print_game_start
 run_games
+print_final_rslt
 if [ $alternate_opt -eq 1 ] ; then
+	score_p1=0
+	score_p2=0
 	switch_players
 	print_game_start
 	run_games
+	print_final_rslt
 fi
-print_final_rslt
