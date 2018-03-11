@@ -4,9 +4,6 @@
 # include "libft.h"
 # include <fcntl.h>
 
-# define COEF_HEAT 0.90
-# define COEF_BORDER 0.10
-
 typedef struct	s_map
 {
 	char	value;
@@ -16,14 +13,6 @@ typedef struct	s_map
 	int		heat;
 	int		border;
 }				t_map;
-
-typedef struct	s_border
-{
-	int top;
-	int bottom;
-	int left;
-	int right;
-}				t_border;
 
 typedef struct	s_game
 {
@@ -39,15 +28,10 @@ typedef struct	s_game
 	int			pos_x;
 	int			pos_y;
 	int			place_found;
-	t_border	border;
+	int			touch_border;
+	float		coef_heat;
+	float		coef_border;
 }				t_game;
-
-//typedef struct	s_heat_map
-//{
-//	int		side;
-//	int		diag;
-//	int		heat;
-//}				t_heat_map;
 
 /*
 ** Tools
@@ -64,7 +48,6 @@ int		ft_max(int a, int b);
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 
-void	ft_opposite_borders(t_game *game);
 void	ft_calc_border_weight(t_game *game);
 
 int		ft_put_piece(t_game *game, int round);
@@ -73,7 +56,7 @@ void	ft_first_heat_calc(t_game *game);
 void	ft_fill_heat_1(t_game *game);
 void	ft_fill_heat_2(t_game *game);
 
-void	ft_calc_weight(t_map *point, int h_map, int w_map);
+void	ft_calc_weight(t_map *point, t_game game);
 
 void	ft_clear_all(t_game *game);
 void	ft_delete_all(t_game *game);

@@ -1,19 +1,5 @@
 #include "filler.h"
 
-void	ft_opposite_borders(t_game *game) // TEMPORAIRE !!!
-{
-	if (game->my_coin == 'o')
-	{
-		game->border.bottom = 1;
-		game->border.right = 1;
-	}
-	else
-	{
-		game->border.top = 1;
-		game->border.left = 1;
-	}
-}
-
 void	ft_fill_from_top(t_game *game)
 {
 	int		i;
@@ -62,8 +48,6 @@ void	ft_fill_from_left(t_game *game)
 
 void	ft_calc_border_weight(t_game *game)
 {
-	if (game->border.top == 1)
+  if (game->my_coin == 'x')
 		ft_fill_from_top(game);
-	if (game->border.left == 1)
-		ft_fill_from_left(game);
 }
