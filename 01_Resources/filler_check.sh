@@ -12,7 +12,7 @@ debug_folder="trace"
 ## TOOLS FUNCTIONS #############################################################
 
 print_title() {
-	echo "*************************************" | tee $rslt_file 
+	echo "*************************************" | tee $rslt_file
 	echo "******** FILLER_TEST RESULTS ********" | tee -a $rslt_file
 	echo "*************************************" | tee -a $rslt_file
 }
@@ -36,6 +36,15 @@ error_vm() { echo "File filler_vm is missing"; }
 error_exit() {
 	($1 1>&2)
 	exit "${2:-1}"  ## Return a code specified by $2 or 1 by default.
+}
+
+print_final_rslt() {
+	local rslt_p1
+	local rslt_p2
+	rslt_p1=`cat $rslt_file | grep $p1 | wc -l`
+	rslt_p2=`cat $rslt_file | grep $p2 | wc -l`
+	printf "\n%-10s %s/%s\n" $p1_basename $rslt_p1 $games | tee -a $rslt_file
+	printf "%-10s %s/%s\n" $p2_basename $rslt_p2 $games | tee -a $rslt_file
 }
 
 ## INIT #########################################################################
@@ -167,3 +176,4 @@ if [ $alternate_opt -eq 1 ] ; then
 	print_game_start
 	run_games
 fi
+if [ $correction_opt -eq 0 ] ; then print_final_rslt ; fi #correction
