@@ -7,7 +7,7 @@ rslt_file="rslt.txt"
 # INIT AND PARSING #############################################################
 
 print_title() {
-	echo "*************************************" | tee $rslt_file 
+	echo "*************************************" | tee $rslt_file
 	echo "***** FILLER_CORRECTION RESULTS *****" | tee -a $rslt_file
 	echo "*************************************" | tee -a $rslt_file
 }
@@ -67,7 +67,7 @@ options_parsing() {
 }
 
 check_parameters() {
-	if [ ! -f $bin ] ; then
+	if [ ! -f $bin ] || [ -z $bin ] ; then
 		error_exit error_binary
 	fi
 }

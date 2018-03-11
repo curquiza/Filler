@@ -8,11 +8,16 @@ correction_opt=0
 alternate_opt=0
 rslt_file="rslt.txt"
 debug_folder="trace"
+score_p1=0
+score_p2=0
+
+DEF='\e[m'
+YELLOW='\e[1;33m'
 
 ## TOOLS FUNCTIONS #############################################################
 
 print_title() {
-	echo "*************************************" | tee $rslt_file 
+	echo "*************************************" | tee $rslt_file
 	echo "******** FILLER_TEST RESULTS ********" | tee -a $rslt_file
 	echo "*************************************" | tee -a $rslt_file
 }
@@ -36,6 +41,19 @@ error_vm() { echo "File filler_vm is missing"; }
 error_exit() {
 	($1 1>&2)
 	exit "${2:-1}"  ## Return a code specified by $2 or 1 by default.
+}
+
+print_final_rslt() {
+	local color_p1=$DEF
+	local color_p2=$DEF
+	if [ $score_p1 -ge $score_p2 ] ; then
+		local color_p1=$YELLOW
+	fi
+	if [ $score_p2 -ge $score_p1 ] ; then
+		local color_p2=$YELLOW
+	fi
+	printf "\n$color_p1%-10s %s/%s$DEF\n" $p1_basename $score_p1 $games | tee -a $rslt_file
+	printf "$color_p2%-10s %s/%s$DEF\n" $p2_basename $score_p2 $games | tee -a $rslt_file
 }
 
 ## INIT #########################################################################
@@ -91,7 +109,7 @@ check_parameters() {
 		echo "Number of games must be a positiv numeric value"
 		local err=1
 	elif [ $games -gt 100 ] || [ $games -le 0 ]  ; then
-		echo "The number of games must be greater than 0 and less than 100"
+		echo "The number of games must be greater than 0 and less or equal than 100"
 		local err=1
 	fi
 	if [ $err -eq 1 ] ; then
@@ -148,6 +166,15 @@ switch_players() {
 	p2_basename=$tmp_basename
 }
 
+score_counter() {
+	if [ `cat filler.trace | grep $p1 | wc -l | tr -d ' '`  -gt 0 ] ; then
+		let score_p1=$score_p1+1
+	fi
+	if [ `cat filler.trace | grep $p2 | wc -l | tr -d ' '`  -gt 0 ] ; then
+		let score_p2=$score_p2+1
+	fi
+}
+
 run_games() {
 	for i in `seq 1 $games`
 	do
@@ -155,6 +182,7 @@ run_games() {
 		./filler_vm -f $map -p1 $p1 -p2 $p2 > "$debug_path/game.txt"
 		copy_debug
 		print_rslt
+		score_counter
 	done
 }
 
@@ -162,8 +190,12 @@ init $@
 if [ $correction_opt -eq 0 ] ; then print_title ; fi #correction
 print_game_start
 run_games
+print_final_rslt
 if [ $alternate_opt -eq 1 ] ; then
+	score_p1=0
+	score_p2=0
 	switch_players
 	print_game_start
 	run_games
+	print_final_rslt
 fi
