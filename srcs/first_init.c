@@ -71,16 +71,14 @@ void	ft_first_init_strat_map(t_game *game)
 
 static void	ft_init_coef(t_game *game)
 {
-	if (game->my_coin == 'x')
+	if (game->my_coin == 'x') // si joueur 2
 	{
-		game->coef_heat = 0;
-		game->coef_border = 1;
+		game->border.top = 1;
+		ft_activate_border(game);
+		ft_border_weight_from_top(game);
 	}
 	else
-	{
-		game->coef_heat = 1.0;
-		game->coef_border = 0;
-	}
+		ft_desactivate_border(game);
 }
 
 int		ft_first_init(t_game *game)
@@ -93,7 +91,6 @@ int		ft_first_init(t_game *game)
 	game->gross_map = ft_memalloc(sizeof(*game->gross_map) *
 				(game->h_map * game->w_map + game->h_map + 1));
 	ft_first_init_strat_map(game);
-	ft_calc_border_weight(game);
 	ft_init_coef(game);
 	ft_init_debug(*game); //debug
 	return (0);

@@ -1,6 +1,24 @@
 #include "filler.h"
 
-void	ft_fill_from_top(t_game *game)
+void	ft_clear_border_weight(t_game *game)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < game->h_map)
+	{
+		j = 0;
+		while (j < game->w_map)
+		{
+			game->strat_map[i][j].border = 0;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_border_weight_from_top(t_game *game)
 {
 	int		i;
 	int		j;
@@ -15,7 +33,7 @@ void	ft_fill_from_top(t_game *game)
 		j = 0;
 		while (j < game->w_map)
 		{
-			game->strat_map[i][j].border += value;
+			game->strat_map[i][j].border = value;
 			j++;
 		}
 		i++;
@@ -23,7 +41,7 @@ void	ft_fill_from_top(t_game *game)
 	}
 }
 
-void	ft_fill_from_left(t_game *game)
+void	ft_border_weight_from_bottom(t_game *game)
 {
 	int		i;
 	int		j;
@@ -31,23 +49,40 @@ void	ft_fill_from_left(t_game *game)
 	int		max_border;
 
 	max_border = ft_max(game->h_map, game->w_map);
-	j = 0;
+	i = game->h_map - 1;
 	value = max_border;
-	while (j < game->w_map)
+	while (i >= 0)
 	{
-		i = 0;
-		while (i < game->h_map)
+		j = 0;
+		while (j < game->w_map)
 		{
-			game->strat_map[i][j].border += value;
-			i++;
+			game->strat_map[i][j].border = value;
+			j++;
 		}
-		j++;
+		i--;
 		value--;
 	}
 }
 
-void	ft_calc_border_weight(t_game *game)
+void	ft_border_weight_from_right(t_game *game)
 {
-  if (game->my_coin == 'x')
-		ft_fill_from_top(game);
+	int		i;
+	int		j;
+	int		value;
+	int		max_border;
+
+	max_border = ft_max(game->h_map, game->w_map);
+	j = game->w_map - 1;
+	value = max_border;
+	while (j >= 0)
+	{
+		i = 0;
+		while (i < game->h_map)
+		{
+			game->strat_map[i][j].border = value;
+			i++;
+		}
+		j--;
+		value--;
+	}
 }

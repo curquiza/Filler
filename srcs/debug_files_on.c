@@ -1,5 +1,19 @@
 #include "filler.h"
 
+void	ft_put_border_target(t_game game, int fd)
+{
+	ft_putstr_fd("Border target : ", fd);
+	if (game.border.top == 1)
+		ft_putstr_fd("TOP", fd);
+	else if (game.border.bottom == 1)
+		ft_putstr_fd("BOTTOM", fd);
+	else if (game.border.right == 1)
+		ft_putstr_fd("RIGHT", fd);
+	else
+		ft_putstr_fd("NONE", fd);
+	ft_putstr_fd("\n", fd);
+}
+
 void	ft_put_stratmap_weight(t_game game, int fd)
 {
 	int		i;
@@ -89,6 +103,7 @@ void	ft_put_stratmap(t_game game, int round)
 	ft_putendl_fd("HEAT: ", fd);
 	ft_put_stratmap_heat(game, fd);
 	ft_putchar_fd('\n', fd);
+	ft_put_border_target(game, fd);
 	ft_putendl_fd("BORDER: ", fd);
 	ft_put_stratmap_border(game, fd);
 	ft_putchar_fd('\n', fd);
@@ -159,7 +174,16 @@ void	ft_init_debug(t_game game)
 	ft_putstr_fd("w_map : ", fd);
 	ft_putnbr_fd(game.w_map, fd);
 	ft_putendl_fd("", fd);
-	ft_putendl_fd("BORDER: ", fd);
-	ft_put_stratmap_border(game, fd);
 	close(fd);
 }
+
+// void ft_test()
+// {
+// 	int fd;
+//
+// 	fd = open("yo", O_RDWR | O_CREAT | O_APPEND, 0666);
+// 	if (fd < 0 )
+// 		return ;
+// 	ft_putstr_fd("yo", fd);
+// 	close(fd);
+// }

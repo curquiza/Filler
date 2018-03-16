@@ -20,6 +20,7 @@ C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 		  algo.c \
 		  heat_map.c \
 		  calc_weight.c \
+			check_border.c \
 		  main.c)
 C_FILES = $(C_DEBUG_FILE) \
 					$(C_OTHER_FILES)

@@ -14,6 +14,13 @@ typedef struct	s_map
 	int		border;
 }				t_map;
 
+typedef struct	s_border
+{
+	int		top;
+	int		bottom;
+	int		right;
+}				t_border;
+
 typedef struct	s_game
 {
 	char		my_coin;
@@ -28,10 +35,12 @@ typedef struct	s_game
 	int			pos_x;
 	int			pos_y;
 	int			place_found;
-	int			touch_border;
+	t_border border;
 	float		coef_heat;
 	float		coef_border;
 }				t_game;
+
+// void ft_test();
 
 /*
 ** Tools
@@ -48,7 +57,13 @@ int		ft_max(int a, int b);
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 
-void	ft_calc_border_weight(t_game *game);
+void  ft_desactivate_border(t_game *game);
+void  ft_activate_border(t_game *game);
+
+void	ft_border_weight_from_top(t_game *game);
+void	ft_border_weight_from_bottom(t_game *game);
+void	ft_border_weight_from_right(t_game *game);
+void	ft_clear_border_weight(t_game *game);
 
 int		ft_put_piece(t_game *game, int round);
 
@@ -57,6 +72,8 @@ void	ft_fill_heat_1(t_game *game);
 void	ft_fill_heat_2(t_game *game);
 
 void	ft_calc_weight(t_map *point, t_game game);
+
+void	ft_check_border(t_game *game);
 
 void	ft_clear_all(t_game *game);
 void	ft_delete_all(t_game *game);
