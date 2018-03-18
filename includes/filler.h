@@ -54,11 +54,14 @@ void  ft_desactivate_border(t_game *game);
 void  ft_activate_border(t_game *game);
 
 /*
-** Filler
+** Init
 */
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 
+/*
+** Algo - calc map weight
+*/
 void	ft_first_heat_calc(t_game *game);
 void	ft_fill_heat_1(t_game *game);
 void	ft_fill_heat_2(t_game *game);
@@ -69,13 +72,22 @@ void	ft_border_weight_from_right(t_game *game);
 void	ft_clear_border_weight(t_game *game);
 void	ft_strat_map_calc(t_game *game);
 
+/*
+** Algo - choose place
+*/
 int		ft_put_piece(t_game *game, int round);
 
+/*
+** Algo - adjust strat
+*/
 int 	ft_check_the_top(t_game game);
 int 	ft_check_the_bottom(t_game game);
 int 	ft_check_the_right(t_game game);
 void	ft_strat_adjustment(t_game *game);
 
+/*
+** Clear
+*/
 void	ft_clear_all(t_game *game);
 void	ft_delete_all(t_game *game);
 
@@ -88,12 +100,5 @@ void	ft_put_stratmap_heat(t_game game, int fd); //del
 void	ft_put_stratmap(t_game game, int round);
 void	ft_put_place_score(int score, int i, int j);
 void	ft_put_best_place(int i, int j);
-
-/*
-** Test part
-*/
-void	ft_init_strat_map(t_game *game, char *gross_map);
-void	ft_calc_heat_weight(t_game *game);
-void	ft_put_stratmap_value(t_game game, int fd);
 
 #endif
