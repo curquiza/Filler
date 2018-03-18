@@ -29,6 +29,7 @@ print_game_start() {
 print_rslt() {
 	local winner=`grep won filler.trace`
 	local rslt=`grep AGAINST filler.trace`
+	printf "%-4s" "$1"
 	echo "$winner - $rslt" | tee -a $rslt_file
 }
 
@@ -167,10 +168,10 @@ switch_players() {
 }
 
 score_counter() {
-	if [ `cat filler.trace | grep $p1 | wc -l | tr -d ' '`  -gt 0 ] ; then
+	if [ `grep $p1 filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
 		let score_p1=$score_p1+1
 	fi
-	if [ `cat filler.trace | grep $p2 | wc -l | tr -d ' '`  -gt 0 ] ; then
+	if [ `grep $p2 filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
 		let score_p2=$score_p2+1
 	fi
 }
@@ -181,7 +182,7 @@ run_games() {
 		init_debug_path $i
 		./filler_vm -f $map -p1 $p1 -p2 $p2 > "$debug_path/game.txt"
 		copy_debug
-		print_rslt
+		print_rslt $i
 		score_counter
 	done
 }
