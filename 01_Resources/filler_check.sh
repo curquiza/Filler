@@ -13,6 +13,7 @@ score_p2=0
 
 DEF='\e[m'
 YELLOW='\e[1;33m'
+GREEN='\e[1;32m'
 
 ## TOOLS FUNCTIONS #############################################################
 
@@ -47,11 +48,17 @@ error_exit() {
 print_final_rslt() {
 	local color_p1=$DEF
 	local color_p2=$DEF
-	if [ $score_p1 -ge $score_p2 ] ; then
-		local color_p1=$YELLOW
-	fi
-	if [ $score_p2 -ge $score_p1 ] ; then
-		local color_p2=$YELLOW
+	if [ $score_p1 -eq $games ] ; then
+		local color_p1=$GREEN
+	elif [ $score_p2 -eq $games ] ; then
+		local color_p2=$GREEN
+	else
+		if [ $score_p1 -ge $score_p2 ] ; then
+			local color_p1=$YELLOW
+		fi
+		if [ $score_p2 -ge $score_p1 ] ; then
+			local color_p2=$YELLOW
+		fi
 	fi
 	printf "\n$color_p1%-10s %s/%s$DEF\n" $p1_basename $score_p1 $games | tee -a $rslt_file
 	printf "$color_p2%-10s %s/%s$DEF\n" $p2_basename $score_p2 $games | tee -a $rslt_file
