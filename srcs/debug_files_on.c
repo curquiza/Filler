@@ -176,14 +176,3 @@ void	ft_init_debug(t_game game)
 	ft_putendl_fd("", fd);
 	close(fd);
 }
-
-// void ft_test()
-// {
-// 	int fd;
-//
-// 	fd = open("yo", O_RDWR | O_CREAT | O_APPEND, 0666);
-// 	if (fd < 0 )
-// 		return ;
-// 	ft_putstr_fd("yo", fd);
-// 	close(fd);
-// }
