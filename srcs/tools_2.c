@@ -7,6 +7,13 @@ int   ft_border_is_activate(t_game game)
   return (0);
 }
 
+int   ft_heat_is_activate(t_game game)
+{
+  if (game.coef_heat == 1)
+    return (1);
+  return (0);
+}
+
 void  ft_desactivate_border(t_game *game)
 {
   game->coef_heat = 1.0;
