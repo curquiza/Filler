@@ -38,8 +38,6 @@ typedef struct	s_game
 	float		coef_border;
 }				t_game;
 
-// void ft_test();
-
 /*
 ** Tools
 */

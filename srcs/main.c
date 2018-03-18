@@ -20,6 +20,5 @@ int		main(void)
 		round++;
 	}
 	ft_delete_all(&game);
-	// while (1);
 	return (0);
 }
