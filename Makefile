@@ -17,7 +17,7 @@ C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 		  get_data.c \
 		  first_init.c \
 		  delete_and_clear.c \
-		  algo.c \
+		  put_piece.c \
 			border_weight_calc.c \
 		  heat_weight_calc_1.c \
 			heat_weight_calc_2.c \
