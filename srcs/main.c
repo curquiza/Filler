@@ -14,7 +14,7 @@ int		main(void)
 			break ;
 		if (ft_put_piece(&game, round) == -1)
 			break ;
-		ft_check_border(&game);
+		ft_strat_adjustment(&game);
 		ft_clear_all(&game);
 		round++;
 	}
