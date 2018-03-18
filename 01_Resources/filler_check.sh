@@ -12,6 +12,8 @@ score_p1=0
 score_p2=0
 
 DEF='\e[m'
+RED='\e[1;31m'
+GREEN='\e[1;32m'
 YELLOW='\e[1;33m'
 
 ## TOOLS FUNCTIONS #############################################################
@@ -29,7 +31,25 @@ print_game_start() {
 print_rslt() {
 	local winner=`grep won filler.trace`
 	local rslt=`grep AGAINST filler.trace`
+	printf "%-4s" "$1"
 	echo "$winner - $rslt" | tee -a $rslt_file
+}
+
+print_error() {
+	local segfault=`grep "Segfault" filler.trace`
+	local buse=`grep "Bus error" filler.trace`
+	local timeout=`grep "timedout" filler.trace`
+	local error=""
+	if [ ! -z "$segfault" ] ; then
+		local error=$segfault
+	elif [ ! -z "$buse" ] ; then
+		local error=$buse
+	elif [ ! -z "$timeout" ] ; then
+		local error=$timeout
+	fi
+	if [ ! -z "$error" ] ; then
+		printf "$RED    %s$DEF\n" "$error"
+	fi
 }
 
 print_usage() { echo 'Usage: sh filler_check.sh -1 [player] -2 [player] -m [map] [ -g [nb_games] -a ]'; }
@@ -46,11 +66,17 @@ error_exit() {
 print_final_rslt() {
 	local color_p1=$DEF
 	local color_p2=$DEF
-	if [ $score_p1 -ge $score_p2 ] ; then
-		local color_p1=$YELLOW
-	fi
-	if [ $score_p2 -ge $score_p1 ] ; then
-		local color_p2=$YELLOW
+	if [ $score_p1 -eq $games ] ; then
+		local color_p1=$GREEN
+	elif [ $score_p2 -eq $games ] ; then
+		local color_p2=$GREEN
+	else
+		if [ $score_p1 -ge $score_p2 ] ; then
+			local color_p1=$YELLOW
+		fi
+		if [ $score_p2 -ge $score_p1 ] ; then
+			local color_p2=$YELLOW
+		fi
 	fi
 	printf "\n$color_p1%-10s %s/%s$DEF\n" $p1_basename $score_p1 $games | tee -a $rslt_file
 	printf "$color_p2%-10s %s/%s$DEF\n" $p2_basename $score_p2 $games | tee -a $rslt_file
@@ -167,10 +193,10 @@ switch_players() {
 }
 
 score_counter() {
-	if [ `cat filler.trace | grep $p1 | wc -l | tr -d ' '`  -gt 0 ] ; then
+	if [ `grep "$p1 won" filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
 		let score_p1=$score_p1+1
 	fi
-	if [ `cat filler.trace | grep $p2 | wc -l | tr -d ' '`  -gt 0 ] ; then
+	if [ `grep "$p2 won" filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
 		let score_p2=$score_p2+1
 	fi
 }
@@ -181,7 +207,8 @@ run_games() {
 		init_debug_path $i
 		./filler_vm -f $map -p1 $p1 -p2 $p2 > "$debug_path/game.txt"
 		copy_debug
-		print_rslt
+		print_rslt $i
+		print_error
 		score_counter
 	done
 }
