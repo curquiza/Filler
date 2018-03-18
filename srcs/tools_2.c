@@ -26,3 +26,10 @@ void  ft_activate_border(t_game *game)
   game->coef_heat = 0;
   game->coef_border = 1.0;
 }
+
+int   ft_is_first_player(t_game game)
+{
+  if (game.my_coin == 'o')
+    return (1);
+  return (0);
+}

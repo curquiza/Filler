@@ -47,7 +47,7 @@ static int		ft_get_map_size(t_game *game)
 	return (0);
 }
 
-void	ft_first_init_strat_map(t_game *game)
+static void	ft_first_init_strat_map(t_game *game)
 {
 	int		i;
 
@@ -63,14 +63,14 @@ void	ft_first_init_strat_map(t_game *game)
 
 static void	ft_init_coef(t_game *game)
 {
-	if (game->my_coin == 'x') // si joueur 2
+	if (ft_is_first_player(*game))
+		ft_desactivate_border(game);
+	else
 	{
 		game->border.top = 1;
 		ft_activate_border(game);
 		ft_border_weight_from_top(game);
 	}
-	else
-		ft_desactivate_border(game);
 }
 
 int		ft_first_init(t_game *game)
