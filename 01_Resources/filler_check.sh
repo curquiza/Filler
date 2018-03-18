@@ -12,8 +12,9 @@ score_p1=0
 score_p2=0
 
 DEF='\e[m'
-YELLOW='\e[1;33m'
+RED='\e[1;31m'
 GREEN='\e[1;32m'
+YELLOW='\e[1;33m'
 
 ## TOOLS FUNCTIONS #############################################################
 
@@ -32,6 +33,23 @@ print_rslt() {
 	local rslt=`grep AGAINST filler.trace`
 	printf "%-4s" "$1"
 	echo "$winner - $rslt" | tee -a $rslt_file
+}
+
+print_error() {
+	local segfault=`grep "Segfault" filler.trace`
+	local buse=`grep "Bus error" filler.trace`
+	local timeout=`grep "timedout" filler.trace`
+	local error=""
+	if [ ! -z "$segfault" ] ; then
+		local error=$segfault
+	elif [ ! -z "$buse" ] ; then
+		local error=$buse
+	elif [ ! -z "$timeout" ] ; then
+		local error=$timeout
+	fi
+	if [ ! -z "$error" ] ; then
+		printf "$RED    %s$DEF\n" "$error"
+	fi
 }
 
 print_usage() { echo 'Usage: sh filler_check.sh -1 [player] -2 [player] -m [map] [ -g [nb_games] -a ]'; }
@@ -175,10 +193,10 @@ switch_players() {
 }
 
 score_counter() {
-	if [ `grep $p1 filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
+	if [ `grep "$p1 won" filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
 		let score_p1=$score_p1+1
 	fi
-	if [ `grep $p2 filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
+	if [ `grep "$p2 won" filler.trace | wc -l | tr -d ' '`  -gt 0 ] ; then
 		let score_p2=$score_p2+1
 	fi
 }
@@ -190,6 +208,7 @@ run_games() {
 		./filler_vm -f $map -p1 $p1 -p2 $p2 > "$debug_path/game.txt"
 		copy_debug
 		print_rslt $i
+		print_error
 		score_counter
 	done
 }
