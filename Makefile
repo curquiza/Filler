@@ -16,10 +16,11 @@ C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 			tools_2.c \
 		  get_data.c \
 		  first_init.c \
-			border_map.c \
 		  delete_and_clear.c \
 		  algo.c \
-		  heat_map.c \
+			border_weight_calc.c \
+		  heat_weight_calc_1.c \
+			heat_weight_calc_2.c \
 		  calc_weight.c \
 			strat_adjustment.c \
 			check_borders.c \

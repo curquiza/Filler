@@ -63,6 +63,8 @@ int		ft_get_data(t_game *game);
 void	ft_border_weight_from_top(t_game *game);
 void	ft_border_weight_from_bottom(t_game *game);
 void	ft_border_weight_from_right(t_game *game);
+void	ft_calc_heat_weight(t_game *game);
+void	ft_calc_weight(t_map *point, t_game game);
 void	ft_clear_border_weight(t_game *game);
 
 int		ft_put_piece(t_game *game, int round);
@@ -77,7 +79,7 @@ void	ft_first_heat_calc(t_game *game);
 void	ft_fill_heat_1(t_game *game);
 void	ft_fill_heat_2(t_game *game);
 
-void	ft_calc_weight(t_map *point, t_game game);
+
 
 void	ft_clear_all(t_game *game);
 void	ft_delete_all(t_game *game);
