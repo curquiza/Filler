@@ -23,7 +23,6 @@ typedef struct	s_game
 {
 	char		my_coin;
 	char		opp_coin;
-	int     first_player;
 	int			h_map;
 	int			w_map;
 	char		*gross_map;
@@ -52,6 +51,7 @@ int   ft_border_is_activate(t_game game);
 int   ft_heat_is_activate(t_game game);
 void  ft_desactivate_border(t_game *game);
 void  ft_activate_border(t_game *game);
+int 	ft_is_first_player(t_game game);
 
 /*
 ** Init
