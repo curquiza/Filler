@@ -7,8 +7,6 @@
 typedef struct	s_map
 {
 	char	value;
-	int		x;
-	int		y;
 	float	weight;
 	int		heat;
 	int		border;
@@ -100,6 +98,5 @@ void	ft_first_init_strat_map(t_game *game);
 void	ft_init_strat_map(t_game *game, char *gross_map);
 void	ft_calc_heat_weight(t_game *game);
 void	ft_put_stratmap_value(t_game game, int fd);
-void	ft_put_stratmap_coord(t_game game, int fd);
 
 #endif
