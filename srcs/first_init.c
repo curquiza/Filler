@@ -50,7 +50,6 @@ static int		ft_get_map_size(t_game *game)
 void	ft_first_init_strat_map(t_game *game)
 {
 	int		i;
-	int		j;
 
 	game->strat_map = ft_memalloc(sizeof(*game->strat_map) * game->h_map);
 	i = 0;
@@ -58,13 +57,6 @@ void	ft_first_init_strat_map(t_game *game)
 	{
 		game->strat_map[i] = ft_memalloc(sizeof(**game->strat_map)
 											* game->w_map);
-		j = 0;
-		while (j < game->w_map)
-		{
-			game->strat_map[i][j].x = i;
-			game->strat_map[i][j].y = j;
-			j++;
-		}
 		i++;
 	}
 }

@@ -7,8 +7,6 @@
 typedef struct	s_map
 {
 	char	value;
-	int		x;
-	int		y;
 	float	weight;
 	int		heat;
 	int		border;
@@ -40,8 +38,6 @@ typedef struct	s_game
 	float		coef_border;
 }				t_game;
 
-// void ft_test();
-
 /*
 ** Tools
 */
@@ -52,6 +48,7 @@ int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 
 int   ft_border_is_activate(t_game game);
+int   ft_heat_is_activate(t_game game);
 void  ft_desactivate_border(t_game *game);
 void  ft_activate_border(t_game *game);
 
@@ -61,24 +58,22 @@ void  ft_activate_border(t_game *game);
 int		ft_first_init(t_game *game);
 int		ft_get_data(t_game *game);
 
+void	ft_first_heat_calc(t_game *game);
+void	ft_fill_heat_1(t_game *game);
+void	ft_fill_heat_2(t_game *game);
+void	ft_calc_heat_weight(t_game *game);
 void	ft_border_weight_from_top(t_game *game);
 void	ft_border_weight_from_bottom(t_game *game);
 void	ft_border_weight_from_right(t_game *game);
 void	ft_clear_border_weight(t_game *game);
+void	ft_strat_map_calc(t_game *game);
 
 int		ft_put_piece(t_game *game, int round);
-
-void	ft_strat_adjustment(t_game *game);
 
 int 	ft_check_the_top(t_game game);
 int 	ft_check_the_bottom(t_game game);
 int 	ft_check_the_right(t_game game);
-
-void	ft_first_heat_calc(t_game *game);
-void	ft_fill_heat_1(t_game *game);
-void	ft_fill_heat_2(t_game *game);
-
-void	ft_calc_weight(t_map *point, t_game game);
+void	ft_strat_adjustment(t_game *game);
 
 void	ft_clear_all(t_game *game);
 void	ft_delete_all(t_game *game);
@@ -100,6 +95,5 @@ void	ft_first_init_strat_map(t_game *game);
 void	ft_init_strat_map(t_game *game, char *gross_map);
 void	ft_calc_heat_weight(t_game *game);
 void	ft_put_stratmap_value(t_game game, int fd);
-void	ft_put_stratmap_coord(t_game game, int fd);
 
 #endif

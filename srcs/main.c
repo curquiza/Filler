@@ -12,6 +12,7 @@ int		main(void)
 	{
 		if (ft_get_data(&game) == -1)
 			break ;
+		ft_strat_map_calc(&game);
 		if (ft_put_piece(&game, round) == -1)
 			break ;
 		ft_strat_adjustment(&game);
@@ -19,6 +20,5 @@ int		main(void)
 		round++;
 	}
 	ft_delete_all(&game);
-	// while (1);
 	return (0);
 }

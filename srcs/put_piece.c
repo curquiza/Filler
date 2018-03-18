@@ -1,13 +1,6 @@
 #include "filler.h"
 
-void	ft_calc_heat_weight(t_game *game)
-{
-	ft_first_heat_calc(game);
-	ft_fill_heat_1(game);
-	ft_fill_heat_2(game);
-}
-
-void	ft_deplacement(char piece_value, int *i, int *j, int init_j)
+void	ft_move(char piece_value, int *i, int *j, int init_j)
 {
 	if (piece_value == '\n')
 	{
@@ -42,7 +35,7 @@ float	ft_calc_score(t_game game, int i, int j)
 			else if (ft_is_empty(game.strat_map[i][j].value))
 				score += game.strat_map[i][j].weight;
 		}
-		ft_deplacement(*game.piece, &i, &j, init_j);
+		ft_move(*game.piece, &i, &j, init_j);
 		game.piece++;
 	}
 	return (my_coin == 1 ? score : 0);
@@ -80,7 +73,6 @@ void	ft_get_place(t_game *game)
 
 int		ft_put_piece(t_game *game, int round)
 {
-	ft_calc_heat_weight(game);
 	ft_put_stratmap(*game, round); // debug
 	ft_get_place(game);
 	ft_printf("%d %d\n", game->pos_x, game->pos_y);
