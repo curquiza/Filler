@@ -69,10 +69,21 @@ void	ft_first_init_strat_map(t_game *game)
 	}
 }
 
+static void	ft_init_coef(t_game *game)
+{
+	if (game->my_coin == 'x') // si joueur 2
+	{
+		game->border.top = 1;
+		ft_activate_border(game);
+		ft_border_weight_from_top(game);
+	}
+	else
+		ft_desactivate_border(game);
+}
+
 int		ft_first_init(t_game *game)
 {
-	//game->pos_x = -1;
-	//game->pos_y = -1;
+	ft_bzero(game, sizeof(game));
 	if (ft_get_coin(game) == -1)
 		return (-1);
 	if (ft_get_map_size(game) == -1)
@@ -80,5 +91,7 @@ int		ft_first_init(t_game *game)
 	game->gross_map = ft_memalloc(sizeof(*game->gross_map) *
 				(game->h_map * game->w_map + game->h_map + 1));
 	ft_first_init_strat_map(game);
+	ft_init_coef(game);
+	ft_init_debug(*game); //debug
 	return (0);
 }

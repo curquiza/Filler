@@ -12,13 +12,17 @@ else
 endif
 C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 			only_for_tests.c \
-		  tools.c \
+		  tools_1.c \
+			tools_2.c \
 		  get_data.c \
 		  first_init.c \
+			border_map.c \
 		  delete_and_clear.c \
 		  algo.c \
 		  heat_map.c \
 		  calc_weight.c \
+			strat_adjustment.c \
+			check_borders.c \
 		  main.c)
 C_FILES = $(C_DEBUG_FILE) \
 					$(C_OTHER_FILES)
