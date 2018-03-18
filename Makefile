@@ -21,7 +21,7 @@ C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 			border_weight_calc.c \
 		  heat_weight_calc_1.c \
 			heat_weight_calc_2.c \
-		  calc_weight.c \
+		  strat_map_calc.c \
 			strat_adjustment.c \
 			check_borders.c \
 		  main.c)

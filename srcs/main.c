@@ -12,8 +12,7 @@ int		main(void)
 	{
 		if (ft_get_data(&game) == -1)
 			break ;
-		if (ft_heat_is_activate(game))
-			ft_calc_heat_weight(&game);
+		ft_strat_map_calc(&game);
 		if (ft_put_piece(&game, round) == -1)
 			break ;
 		ft_strat_adjustment(&game);
