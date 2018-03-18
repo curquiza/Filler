@@ -23,6 +23,7 @@ typedef struct	s_game
 {
 	char		my_coin;
 	char		opp_coin;
+	int     first_player;
 	int			h_map;
 	int			w_map;
 	char		*gross_map;
@@ -91,7 +92,6 @@ void	ft_put_best_place(int i, int j);
 /*
 ** Test part
 */
-void	ft_first_init_strat_map(t_game *game);
 void	ft_init_strat_map(t_game *game, char *gross_map);
 void	ft_calc_heat_weight(t_game *game);
 void	ft_put_stratmap_value(t_game game, int fd);

@@ -47,7 +47,7 @@ static int		ft_get_map_size(t_game *game)
 	return (0);
 }
 
-void	ft_first_init_strat_map(t_game *game)
+static void	ft_first_init_strat_map(t_game *game)
 {
 	int		i;
 

@@ -11,7 +11,6 @@ else
   C_DEBUG_FILE = $(C_DIR)/debug_files_off.c
 endif
 C_OTHER_FILES = $(addprefix $(C_DIR)/, \
-			only_for_tests.c \
 		  tools_1.c \
 			tools_2.c \
 		  get_data.c \
