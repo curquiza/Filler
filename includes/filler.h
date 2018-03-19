@@ -23,6 +23,7 @@ typedef struct	s_game
 {
 	char		my_coin;
 	char		opp_coin;
+	char		player_position;
 	int			h_map;
 	int			w_map;
 	char		*gross_map;
@@ -33,7 +34,7 @@ typedef struct	s_game
 	int			pos_x;
 	int			pos_y;
 	int			place_found;
-	t_border border;
+	t_border 	border;
 	float		coef_heat;
 	float		coef_border;
 }				t_game;
@@ -47,11 +48,11 @@ int		ft_is_empty(char value);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 
-int   ft_border_is_activate(t_game game);
-int   ft_heat_is_activate(t_game game);
-void  ft_desactivate_border(t_game *game);
-void  ft_activate_border(t_game *game);
-int 	ft_is_first_player(t_game game);
+int		ft_border_is_activate(t_game game);
+int   	ft_heat_is_activate(t_game game);
+void  	ft_desactivate_border(t_game *game);
+void	ft_activate_border(t_game *game);
+int		ft_is_top_player(t_game game);
 
 /*
 ** Init
