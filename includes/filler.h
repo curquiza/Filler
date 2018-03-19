@@ -17,6 +17,7 @@ typedef struct	s_border
 	int		top;
 	int		bottom;
 	int		right;
+	int 	left;
 }				t_border;
 
 typedef struct	s_game
@@ -85,6 +86,7 @@ int		ft_put_piece(t_game *game, int round);
 int 	ft_check_the_top(t_game game);
 int 	ft_check_the_bottom(t_game game);
 int 	ft_check_the_right(t_game game);
+int 	ft_check_the_left(t_game game);
 void	ft_strat_adjustment(t_game *game);
 
 /*
