@@ -86,3 +86,26 @@ void	ft_border_weight_from_right(t_game *game)
 		value--;
 	}
 }
+
+void	ft_border_weight_from_left(t_game *game)
+{
+	int		i;
+	int		j;
+	int		value;
+	int		max_border;
+
+	max_border = ft_max(game->h_map, game->w_map);
+	j = 0;
+	value = max_border;
+	while (j < game->w_map)
+	{
+		i = 0;
+		while (i < game->h_map)
+		{
+			game->strat_map[i][j].border = value;
+			i++;
+		}
+		j++;
+		value--;
+	}
+}

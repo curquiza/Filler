@@ -70,6 +70,7 @@ void	ft_calc_heat_weight(t_game *game);
 void	ft_border_weight_from_top(t_game *game);
 void	ft_border_weight_from_bottom(t_game *game);
 void	ft_border_weight_from_right(t_game *game);
+void	ft_border_weight_from_left(t_game *game);
 void	ft_clear_border_weight(t_game *game);
 void	ft_strat_map_calc(t_game *game);
 
