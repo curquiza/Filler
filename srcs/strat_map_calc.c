@@ -15,14 +15,29 @@ static void	ft_calc_global_weight(t_map *point, t_game game)
 static void	ft_init_coef(t_game *game)
 {
 	if (ft_is_top_player(*game))
-		ft_desactivate_border(game);
+	{
+		game->border.bottom = 1;
+		ft_border_weight_from_bottom(game);
+	}
 	else
 	{
 		game->border.top = 1;
-		ft_activate_border(game);
 		ft_border_weight_from_top(game);
 	}
+	ft_activate_border(game);
 }
+
+// static void	ft_init_coef(t_game *game)
+// {
+// 	if (ft_is_top_player(*game))
+// 		ft_desactivate_border(game);
+// 	else
+// 	{
+// 		game->border.top = 1;
+// 		ft_activate_border(game);
+// 		ft_border_weight_from_top(game);
+// 	}
+// }
 
 static void	ft_get_position(t_game *game)
 {

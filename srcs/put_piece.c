@@ -41,6 +41,14 @@ float	ft_calc_score(t_game game, int i, int j)
 	return (my_coin == 1 ? score : 0);
 }
 
+static int ft_is_better_place(float tmp, float best_score, t_game game)
+{
+		if (ft_is_top_player(game))
+			return (tmp >= best_score);
+		else
+			return (tmp > best_score);
+}
+
 void	ft_get_place(t_game *game)
 {
 	int		i;
@@ -58,7 +66,8 @@ void	ft_get_place(t_game *game)
 			tmp = ft_calc_score(*game, i, j);
 			if (tmp != 0)
 				ft_put_place_score(tmp, i, j); // debug
-			if (tmp > best_score)
+			// if (tmp > best_score)
+			if (ft_is_better_place(tmp, best_score, *game))
 			{
 				best_score = tmp;
 				game->pos_x = i;
