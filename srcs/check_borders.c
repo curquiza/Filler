@@ -55,7 +55,7 @@ int 	ft_check_the_right(t_game game)
 			return (1);
 		i++;
 	}
-	if (opp_coin >= (game.w_map / 2 + 2))
+	if (opp_coin >= (game.h_map / 2 + 2))
 		return (-1);
 	return (0);
 }
@@ -75,7 +75,7 @@ int 	ft_check_the_left(t_game game)
 			return (1);
 		i++;
 	}
-	if (opp_coin >= (game.w_map / 2 + 2))
+	if (opp_coin >= (game.h_map / 2 + 2))
 		return (-1);
 	return (0);
 }
