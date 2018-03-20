@@ -67,7 +67,7 @@ void	ft_get_place(t_game *game)
 			if (tmp != 0)
 				ft_put_place_score(tmp, i, j); // debug
 			// if (tmp > best_score)
-			if (ft_is_better_place(tmp, best_score, *game))
+			if (tmp && ft_is_better_place(tmp, best_score, *game))
 			{
 				best_score = tmp;
 				game->pos_x = i;
