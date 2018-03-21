@@ -31,7 +31,7 @@ print_game_start() {
 print_rslt() {
 	local winner=`grep won filler.trace`
 	local rslt=`grep AGAINST filler.trace`
-	printf "%-4s" "$1"
+	printf "%-5s" "$1"
 	echo "$winner - $rslt" | tee -a $rslt_file
 }
 
