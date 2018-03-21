@@ -16,28 +16,22 @@ static void	ft_init_coef(t_game *game)
 {
 	if (ft_is_top_player(*game))
 	{
-		game->border.bottom = 1;
-		ft_border_weight_from_bottom(game);
+		if (game->h_map <= SMALL_MAP_MAX_H || game->w_map <= SMALL_MAP_MAX_W)
+			ft_activate_heat(game);
+		else
+		{
+			game->border.bottom = 1;
+			ft_border_weight_from_bottom(game);
+			ft_activate_border(game);
+		}
 	}
 	else
 	{
 		game->border.top = 1;
 		ft_border_weight_from_top(game);
+		ft_activate_border(game);
 	}
-	ft_activate_border(game);
 }
-
-// static void	ft_init_coef(t_game *game)
-// {
-// 	if (ft_is_top_player(*game))
-// 		ft_desactivate_border(game);
-// 	else
-// 	{
-// 		game->border.top = 1;
-// 		ft_activate_border(game);
-// 		ft_border_weight_from_top(game);
-// 	}
-// }
 
 static void	ft_get_position(t_game *game)
 {
