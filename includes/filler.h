@@ -54,9 +54,10 @@ int		ft_max(int a, int b);
 
 int		ft_border_is_activate(t_game game);
 int   	ft_heat_is_activate(t_game game);
-void  	ft_desactivate_border(t_game *game);
-void	ft_activate_border(t_game *game);
 void	ft_activate_heat(t_game *game);
+void	ft_activate_border(t_game *game);
+void  	ft_desactivate_border(t_game *game);
+
 int		ft_is_top_player(t_game game);
 
 /*

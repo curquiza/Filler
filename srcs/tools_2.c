@@ -31,10 +31,3 @@ void  ft_desactivate_border(t_game *game)
   ft_activate_heat(game);
   ft_clear_border_weight(game);
 }
-
-int   ft_is_top_player(t_game game)
-{
-  if (game.player_position == 1)
-    return (1);
-  return (0);
-}
