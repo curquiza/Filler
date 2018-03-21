@@ -17,12 +17,14 @@ typedef struct	s_border
 	int		top;
 	int		bottom;
 	int		right;
+	int 	left;
 }				t_border;
 
 typedef struct	s_game
 {
 	char		my_coin;
 	char		opp_coin;
+	char		player_position;
 	int			h_map;
 	int			w_map;
 	char		*gross_map;
@@ -33,7 +35,7 @@ typedef struct	s_game
 	int			pos_x;
 	int			pos_y;
 	int			place_found;
-	t_border border;
+	t_border 	border;
 	float		coef_heat;
 	float		coef_border;
 }				t_game;
@@ -47,11 +49,11 @@ int		ft_is_empty(char value);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 
-int   ft_border_is_activate(t_game game);
-int   ft_heat_is_activate(t_game game);
-void  ft_desactivate_border(t_game *game);
-void  ft_activate_border(t_game *game);
-int 	ft_is_first_player(t_game game);
+int		ft_border_is_activate(t_game game);
+int   	ft_heat_is_activate(t_game game);
+void  	ft_desactivate_border(t_game *game);
+void	ft_activate_border(t_game *game);
+int		ft_is_top_player(t_game game);
 
 /*
 ** Init
@@ -69,6 +71,7 @@ void	ft_calc_heat_weight(t_game *game);
 void	ft_border_weight_from_top(t_game *game);
 void	ft_border_weight_from_bottom(t_game *game);
 void	ft_border_weight_from_right(t_game *game);
+void	ft_border_weight_from_left(t_game *game);
 void	ft_clear_border_weight(t_game *game);
 void	ft_strat_map_calc(t_game *game);
 
@@ -83,6 +86,7 @@ int		ft_put_piece(t_game *game, int round);
 int 	ft_check_the_top(t_game game);
 int 	ft_check_the_bottom(t_game game);
 int 	ft_check_the_right(t_game game);
+int 	ft_check_the_left(t_game game);
 void	ft_strat_adjustment(t_game *game);
 
 /*

@@ -61,18 +61,6 @@ static void	ft_first_init_strat_map(t_game *game)
 	}
 }
 
-static void	ft_init_coef(t_game *game)
-{
-	if (ft_is_first_player(*game))
-		ft_desactivate_border(game);
-	else
-	{
-		game->border.top = 1;
-		ft_activate_border(game);
-		ft_border_weight_from_top(game);
-	}
-}
-
 int		ft_first_init(t_game *game)
 {
 	ft_bzero(game, sizeof(game));
@@ -83,7 +71,6 @@ int		ft_first_init(t_game *game)
 	game->gross_map = ft_memalloc(sizeof(*game->gross_map) *
 				(game->h_map * game->w_map + game->h_map + 1));
 	ft_first_init_strat_map(game);
-	ft_init_coef(game);
 	ft_init_debug(*game); //debug
 	return (0);
 }
