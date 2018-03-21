@@ -31,7 +31,7 @@ print_game_start() {
 print_rslt() {
 	local winner=`grep won filler.trace`
 	local rslt=`grep AGAINST filler.trace`
-	printf "%-4s" "$1"
+	printf "%-5s" "$1"
 	echo "$winner - $rslt" | tee -a $rslt_file
 }
 
@@ -134,8 +134,8 @@ check_parameters() {
 	if ! [[ $games =~ $reg ]] ; then
 		echo "Number of games must be a positiv numeric value"
 		local err=1
-	elif [ $games -gt 100 ] || [ $games -le 0 ]  ; then
-		echo "The number of games must be greater than 0 and less or equal than 100"
+	elif [ $games -gt 1000 ] || [ $games -le 0 ]  ; then
+		echo "The number of games must be greater than 0 and less or equal than 1000"
 		local err=1
 	fi
 	if [ $err -eq 1 ] ; then
