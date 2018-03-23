@@ -72,8 +72,11 @@ static int		ft_get_piece(t_game *game)
 	{
 		if (get_next_line(0, &line) == -1)
 			return (-1);
-		if (!line)
+		if (!line || ft_strncmp(line, "Piece", 5))
+		{
+			ft_strdel(&line);
 			return (-1);
+		}
 		ft_strcat(game->piece, line);
 		ft_strcat(game->piece, "\n");
 		ft_strdel(&line);
