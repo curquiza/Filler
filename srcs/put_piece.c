@@ -64,9 +64,7 @@ void	ft_get_place(t_game *game)
 		while (j < game->w_map)
 		{
 			tmp = ft_calc_score(*game, i, j);
-			if (tmp != 0)
-				ft_put_place_score(tmp, i, j); // debug
-			// if (tmp > best_score)
+			(tmp != 0) ? ft_put_place_score(tmp, i, j) : 0; // debug
 			if (tmp && ft_is_better_place(tmp, best_score, *game))
 			{
 				best_score = tmp;
