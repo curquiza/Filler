@@ -1,14 +1,15 @@
 #include "filler.h"
 
-void	ft_move(char piece_value, int *i, int *j, int init_j)
+static void	ft_move(t_game *game, int *i, int *j, int init_j)
 {
-	if (piece_value == '\n')
+	if (*game->piece == '\n')
 	{
 		*j = init_j;
 		(*i)++;
 	}
 	else
 		(*j)++;
+	(game->piece)++;
 }
 
 float	ft_calc_score(t_game game, int i, int j)
@@ -35,8 +36,7 @@ float	ft_calc_score(t_game game, int i, int j)
 			else if (ft_is_empty(game.strat_map[i][j].value))
 				score += game.strat_map[i][j].weight;
 		}
-		ft_move(*game.piece, &i, &j, init_j);
-		game.piece++;
+		ft_move(&game, &i, &j, init_j);
 	}
 	return (my_coin == 1 ? score : 0);
 }
