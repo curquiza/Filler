@@ -5,9 +5,7 @@ static int		ft_fill_map(t_game *game)
 	char	*line;
 	int		i;
 
-	if (get_next_line(0, &line) == -1)
-		return (-1);
-	if (!line)
+	if (get_next_line(0, &line) == -1 || !line)
 		return (-1);
 	if (line[0] == 'P')
 	{
@@ -19,9 +17,7 @@ static int		ft_fill_map(t_game *game)
 	i = 0;
 	while (i < game->h_map)
 	{
-		if (get_next_line(0, &line) == -1)
-			return (-1);
-		if (!line)
+		if (get_next_line(0, &line) == -1 || !line)
 			return (-1);
 		ft_strcat(game->gross_map, ft_strchr(line, ' ') + 1);
 		ft_strcat(game->gross_map, "\n");
@@ -39,16 +35,13 @@ static int		ft_get_piece_size(t_game *game)
 	char	*nbr;
 	char	*line;
 
-	if (get_next_line(0, &line) == -1)
-		return (-1);
-	if (!line  || ft_strncmp(line, "Piece", 5))
+	if (get_next_line(0, &line) == -1 || !line || ft_strncmp(line, "Piece", 5))
 	{
 		ft_strdel(&line);
 		return (-1);
 	}
-	if (!(start = ft_strchr(line, ' '))
-		|| !(middle = ft_strchr(start + 1, ' '))
-		|| !(end = ft_strchr(middle + 1, ':')))
+	if (!(start = ft_strchr(line, ' ')) || !(middle = ft_strchr(start + 1, ' '))
+			|| !(end = ft_strchr(middle + 1, ':')))
 	{
 		ft_strdel(&line);
 		return (-1);

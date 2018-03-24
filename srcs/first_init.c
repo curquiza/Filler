@@ -28,14 +28,13 @@ static int		ft_get_map_size(t_game *game)
 	char	*nbr;
 	char	*line;
 
-	if (get_next_line(0, &line) == -1 || ft_strncmp(line, "Plateau", 7))
+	if (get_next_line(0, &line) == -1 || !line || ft_strncmp(line, "Plateau", 7))
 	{
 		ft_strdel(&line);
 		return (-1);
 	}
-	if (!(start = ft_strchr(line, ' '))
-		|| !(middle = ft_strchr(start + 1, ' '))
-		|| !(end = ft_strchr(middle + 1, ':')))
+	if (!(start = ft_strchr(line, ' ')) || !(middle = ft_strchr(start + 1, ' '))
+			|| !(end = ft_strchr(middle + 1, ':')))
 	{
 		ft_strdel(&line);
 		return (-1);
