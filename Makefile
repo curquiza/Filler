@@ -6,7 +6,7 @@ CC = gcc -Wall -Wextra -Werror
 
 C_DIR = srcs
 ifeq ($(DEBUG), 1)
-  C_DEBUG_FILE = $(C_DIR)/debug_files_on.c
+  C_DEBUG_FILE = $(C_DIR)/debug_files_1_on.c $(C_DIR)/debug_files_2_on.c
 else
   C_DEBUG_FILE = $(C_DIR)/debug_files_off.c
 endif
