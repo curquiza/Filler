@@ -12,7 +12,7 @@ static void	ft_move(t_game *game, int *i, int *j, int init_j)
 	(game->piece)++;
 }
 
-float	ft_calc_score(t_game game, int i, int j)
+static float	ft_calc_score(t_game game, int i, int j)
 {
 	float	score;
 	int		my_coin;
@@ -49,7 +49,7 @@ static int ft_is_better_place(float tmp, float best_score, t_game game)
 			return (tmp > best_score);
 }
 
-void	ft_get_place(t_game *game)
+static void	ft_get_place(t_game *game)
 {
 	int		i;
 	int		j;

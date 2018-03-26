@@ -1,6 +1,6 @@
 #include "filler.h"
 
-void  ft_top_player_adjustment(t_game *game)
+static void  ft_top_player_adjustment(t_game *game)
 {
   if (game->border.bottom == 1 && ft_check_the_bottom(*game))
   {
@@ -29,7 +29,7 @@ void  ft_top_player_adjustment(t_game *game)
   }
 }
 
-void  ft_bottom_player_adjustment(t_game *game)
+static void  ft_bottom_player_adjustment(t_game *game)
 {
   if (game->border.top == 1 && ft_check_the_top(*game))
   {

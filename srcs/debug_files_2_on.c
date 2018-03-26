@@ -1,6 +1,6 @@
 #include "filler.h"
 
-void	ft_put_border_target(t_game game, int fd)
+static void	ft_put_border_target(t_game game, int fd)
 {
 	ft_putstr_fd("Border target : ", fd);
 	if (game.border.top == 1)
@@ -14,7 +14,7 @@ void	ft_put_border_target(t_game game, int fd)
 	ft_putstr_fd("\n", fd);
 }
 
-void	ft_put_stratmap_weight(t_game game, int fd)
+static void	ft_put_stratmap_weight(t_game game, int fd)
 {
 	int		i;
 	int		j;
@@ -40,7 +40,7 @@ void	ft_put_stratmap_weight(t_game game, int fd)
   ft_putchar_fd('\n', fd);
 }
 
-void	ft_put_stratmap_border(t_game game, int fd)
+static void	ft_put_stratmap_border(t_game game, int fd)
 {
 	int		i;
 	int		j;
@@ -66,7 +66,7 @@ void	ft_put_stratmap_border(t_game game, int fd)
   ft_putchar_fd('\n', fd);
 }
 
-void	ft_put_stratmap_heat(t_game game, int fd)
+static void	ft_put_stratmap_heat(t_game game, int fd)
 {
 	int		i;
 	int		j;
