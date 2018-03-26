@@ -19,6 +19,7 @@ void	ft_put_stratmap_weight(t_game game, int fd)
 	int		i;
 	int		j;
 
+  ft_putendl_fd("WEIGHT: ", fd);
 	i = 0;
 	while (i < game.h_map)
 	{
@@ -36,6 +37,7 @@ void	ft_put_stratmap_weight(t_game game, int fd)
 		ft_putchar_fd('\n', fd);
 		i++;
 	}
+  ft_putchar_fd('\n', fd);
 }
 
 void	ft_put_stratmap_border(t_game game, int fd)
@@ -43,6 +45,7 @@ void	ft_put_stratmap_border(t_game game, int fd)
 	int		i;
 	int		j;
 
+  ft_putendl_fd("BORDER: ", fd);
 	i = 0;
 	while (i < game.h_map)
 	{
@@ -60,6 +63,7 @@ void	ft_put_stratmap_border(t_game game, int fd)
 		ft_putchar_fd('\n', fd);
 		i++;
 	}
+  ft_putchar_fd('\n', fd);
 }
 
 void	ft_put_stratmap_heat(t_game game, int fd)
@@ -67,6 +71,7 @@ void	ft_put_stratmap_heat(t_game game, int fd)
 	int		i;
 	int		j;
 
+  ft_putendl_fd("HEAT: ", fd);
 	i = 0;
 	while (i < game.h_map)
 	{
@@ -84,6 +89,7 @@ void	ft_put_stratmap_heat(t_game game, int fd)
 		ft_putchar_fd('\n', fd);
 		i++;
 	}
+  ft_putchar_fd('\n', fd);
 }
 
 void	ft_put_stratmap(t_game game, int round)
@@ -96,20 +102,13 @@ void	ft_put_stratmap(t_game game, int round)
 		fd = open("debug_strat_map", O_RDWR | O_CREAT | O_APPEND, 0666);
 	if (fd < 0 )
 		return ;
-	ft_putendl_fd("\n-------------------------\n", fd);
-	ft_putstr_fd("ROUND: ", fd);
+	ft_putstr_fd("\n-------------------------\n\nROUND: ", fd);
 	ft_putnbr_fd(round, fd);
 	ft_putendl_fd("\n", fd);
-	ft_putendl_fd("HEAT: ", fd);
 	ft_put_stratmap_heat(game, fd);
-	ft_putchar_fd('\n', fd);
 	ft_put_border_target(game, fd);
-	ft_putendl_fd("BORDER: ", fd);
 	ft_put_stratmap_border(game, fd);
-	ft_putchar_fd('\n', fd);
-	ft_putendl_fd("WEIGHT: ", fd);
 	ft_put_stratmap_weight(game, fd);
-	ft_putchar_fd('\n', fd);
 	ft_putendl_fd("PIECE: ", fd);
 	ft_putstr_fd("h = ", fd);
 	ft_putnbr_fd(game.h_piece, fd);
