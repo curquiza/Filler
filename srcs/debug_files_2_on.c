@@ -30,7 +30,7 @@ static void	ft_put_stratmap_weight(t_game game, int fd)
 				|| ft_is_opp(game, game.strat_map[i][j].value))
 				ft_putchar_fd(game.strat_map[i][j].value, fd);
 			else
-				dprintf(fd, "%.2f", game.strat_map[i][j].weight); // WARNING
+				ft_putnbr_fd(game.strat_map[i][j].weight, fd);
 			ft_putchar_fd('\t', fd);
 			j++;
 		}
