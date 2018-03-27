@@ -21,16 +21,9 @@ int		ft_is_empty(char value)
 	return (0);
 }
 
-int		ft_min(int a, int b)
+int   ft_is_top_player(t_game game)
 {
-	if (a <= b)
-		return (a);
-	return (b);
-}
-
-int		ft_max(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
+  if (game.player_position == 1)
+    return (1);
+  return (0);
 }
