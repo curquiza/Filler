@@ -2,16 +2,12 @@
 
 int		ft_border_is_activate(t_game game)
 {
-	if (game.coef_border == 1)
-		return (1);
-	return (0);
+	return (game.coef_border == 1);
 }
 
 int		ft_heat_is_activate(t_game game)
 {
-	if (game.coef_heat == 1)
-		return (1);
-	return (0);
+	return (game.coef_heat == 1);
 }
 
 void	ft_activate_heat(t_game *game)
