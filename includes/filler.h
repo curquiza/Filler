@@ -46,19 +46,17 @@ typedef struct	s_game
 /*
 ** Tools
 */
+int		ft_min(int a, int b);
+int		ft_max(int a, int b);
 int		ft_is_me(t_game game, char value);
 int		ft_is_opp(t_game game, char value);
 int		ft_is_empty(char value);
-int		ft_min(int a, int b);
-int		ft_max(int a, int b);
-
+int		ft_is_top_player(t_game game);
 int		ft_border_is_activate(t_game game);
 int   	ft_heat_is_activate(t_game game);
 void	ft_activate_heat(t_game *game);
 void	ft_activate_border(t_game *game);
 void  	ft_desactivate_border(t_game *game);
-
-int		ft_is_top_player(t_game game);
 
 /*
 ** Init
@@ -104,8 +102,6 @@ void	ft_delete_all(t_game *game);
 ** Debug
 */
 void	ft_init_debug(t_game game);
-void	ft_put_stratmap_weight(t_game game, int fd); //del
-void	ft_put_stratmap_heat(t_game game, int fd); //del
 void	ft_put_stratmap(t_game game, int round);
 void	ft_put_place_score(int score, int i, int j);
 void	ft_put_best_place(int i, int j);

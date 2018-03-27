@@ -1,17 +1,18 @@
 #include "filler.h"
 
-void	ft_move(char piece_value, int *i, int *j, int init_j)
+static void		ft_move(t_game *game, int *i, int *j, int init_j)
 {
-	if (piece_value == '\n')
+	if (*game->piece == '\n')
 	{
 		*j = init_j;
 		(*i)++;
 	}
 	else
 		(*j)++;
+	(game->piece)++;
 }
 
-float	ft_calc_score(t_game game, int i, int j)
+static float	ft_calc_score(t_game game, int i, int j)
 {
 	float	score;
 	int		my_coin;
@@ -35,13 +36,12 @@ float	ft_calc_score(t_game game, int i, int j)
 			else if (ft_is_empty(game.strat_map[i][j].value))
 				score += game.strat_map[i][j].weight;
 		}
-		ft_move(*game.piece, &i, &j, init_j);
-		game.piece++;
+		ft_move(&game, &i, &j, init_j);
 	}
 	return (my_coin == 1 ? score : 0);
 }
 
-static int ft_is_better_place(float tmp, float best_score, t_game game)
+static int		ft_is_better_place(float tmp, float best_score, t_game game)
 {
 		if (ft_is_top_player(game))
 			return (tmp >= best_score);
@@ -49,7 +49,7 @@ static int ft_is_better_place(float tmp, float best_score, t_game game)
 			return (tmp > best_score);
 }
 
-void	ft_get_place(t_game *game)
+static void		ft_get_place(t_game *game)
 {
 	int		i;
 	int		j;
@@ -64,9 +64,7 @@ void	ft_get_place(t_game *game)
 		while (j < game->w_map)
 		{
 			tmp = ft_calc_score(*game, i, j);
-			if (tmp != 0)
-				ft_put_place_score(tmp, i, j); // debug
-			// if (tmp > best_score)
+			(tmp != 0) ? ft_put_place_score(tmp, i, j) : 0;
 			if (tmp && ft_is_better_place(tmp, best_score, *game))
 			{
 				best_score = tmp;
@@ -80,12 +78,12 @@ void	ft_get_place(t_game *game)
 	}
 }
 
-int		ft_put_piece(t_game *game, int round)
+int				ft_put_piece(t_game *game, int round)
 {
-	ft_put_stratmap(*game, round); // debug
+	ft_put_stratmap(*game, round);
 	ft_get_place(game);
 	ft_printf("%d %d\n", game->pos_x, game->pos_y);
-	ft_put_best_place(game->pos_x, game->pos_y); // debug
+	ft_put_best_place(game->pos_x, game->pos_y);
 	if (game->place_found == 0)
 		return (-1);
 	return (0);

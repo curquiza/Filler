@@ -1,6 +1,6 @@
 #include "filler.h"
 
-static int		ft_get_coin(t_game *game)
+static int	ft_get_coin(t_game *game)
 {
 	char	*line;
 
@@ -20,7 +20,7 @@ static int		ft_get_coin(t_game *game)
 	return (0);
 }
 
-static int		ft_get_map_size(t_game *game)
+static int	ft_get_map_size(t_game *game)
 {
 	char	*start;
 	char	*middle;
@@ -28,14 +28,13 @@ static int		ft_get_map_size(t_game *game)
 	char	*nbr;
 	char	*line;
 
-	if (get_next_line(0, &line) == -1 || ft_strncmp(line, "Plateau", 7))
+	if (get_next_line(0, &line) == -1 || !line || ft_strncmp(line, "Plateau", 7))
 	{
 		ft_strdel(&line);
 		return (-1);
 	}
-	if (!(start = ft_strchr(line, ' '))
-		|| !(middle = ft_strchr(start + 1, ' '))
-		|| !(end = ft_strchr(middle + 1, ':')))
+	if (!(start = ft_strchr(line, ' ')) || !(middle = ft_strchr(start + 1, ' '))
+			|| !(end = ft_strchr(middle + 1, ':')))
 	{
 		ft_strdel(&line);
 		return (-1);
@@ -64,7 +63,7 @@ static void	ft_first_init_strat_map(t_game *game)
 	}
 }
 
-int		ft_first_init(t_game *game)
+int			ft_first_init(t_game *game)
 {
 	ft_bzero(game, sizeof(game));
 	if (ft_get_coin(game) == -1)
@@ -74,6 +73,6 @@ int		ft_first_init(t_game *game)
 	game->gross_map = ft_memalloc(sizeof(*game->gross_map) *
 				(game->h_map * game->w_map + game->h_map + 1));
 	ft_first_init_strat_map(game);
-	ft_init_debug(*game); //debug
+	ft_init_debug(*game);
 	return (0);
 }

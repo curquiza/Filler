@@ -1,11 +1,5 @@
 #include "filler.h"
 
-void	ft_put_stratmap_heat(t_game game, int fd)
-{
-	(void)game;
-	(void)fd;
-}
-
 void	ft_put_stratmap(t_game game, int round)
 {
 	(void)game;
