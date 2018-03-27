@@ -21,9 +21,9 @@ int		ft_is_empty(char value)
 	return (0);
 }
 
-int   ft_is_top_player(t_game game)
+int		ft_is_top_player(t_game game)
 {
-  if (game.player_position == 1)
-    return (1);
-  return (0);
+	if (game.player_position == 1)
+		return (1);
+	return (0);
 }

@@ -92,7 +92,7 @@ static void	ft_put_stratmap_heat(t_game game, int fd)
   ft_putchar_fd('\n', fd);
 }
 
-void	ft_put_stratmap(t_game game, int round)
+void		ft_put_stratmap(t_game game, int round)
 {
 	int		fd;
 

@@ -1,6 +1,6 @@
 #include "filler.h"
 
-static int		ft_fill_map(t_game *game)
+static int	ft_fill_map(t_game *game)
 {
 	char	*line;
 	int		i;
@@ -27,7 +27,7 @@ static int		ft_fill_map(t_game *game)
 	return (0);
 }
 
-static int		ft_get_piece_size(t_game *game)
+static int	ft_get_piece_size(t_game *game)
 {
 	char	*start;
 	char	*middle;
@@ -56,7 +56,7 @@ static int		ft_get_piece_size(t_game *game)
 	return (0);
 }
 
-static int		ft_get_piece(t_game *game)
+static int	ft_get_piece(t_game *game)
 {
 	char	*line;
 	int		i;
@@ -99,7 +99,7 @@ static void	ft_init_strat_map(t_game *game, char *gross_map)
 	}
 }
 
-int		ft_get_data(t_game *game)
+int			ft_get_data(t_game *game)
 {
 	if (ft_fill_map(game) == -1)
 		return (-1);

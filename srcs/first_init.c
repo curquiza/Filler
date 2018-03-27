@@ -1,6 +1,6 @@
 #include "filler.h"
 
-static int		ft_get_coin(t_game *game)
+static int	ft_get_coin(t_game *game)
 {
 	char	*line;
 
@@ -20,7 +20,7 @@ static int		ft_get_coin(t_game *game)
 	return (0);
 }
 
-static int		ft_get_map_size(t_game *game)
+static int	ft_get_map_size(t_game *game)
 {
 	char	*start;
 	char	*middle;
@@ -63,7 +63,7 @@ static void	ft_first_init_strat_map(t_game *game)
 	}
 }
 
-int		ft_first_init(t_game *game)
+int			ft_first_init(t_game *game)
 {
 	ft_bzero(game, sizeof(game));
 	if (ft_get_coin(game) == -1)
