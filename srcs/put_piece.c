@@ -64,7 +64,7 @@ static void		ft_get_place(t_game *game)
 		while (j < game->w_map)
 		{
 			tmp = ft_calc_score(*game, i, j);
-			(tmp != 0) ? ft_put_place_score(tmp, i, j) : 0; // debug
+			(tmp != 0) ? ft_put_place_score(tmp, i, j) : 0;
 			if (tmp && ft_is_better_place(tmp, best_score, *game))
 			{
 				best_score = tmp;
@@ -80,10 +80,10 @@ static void		ft_get_place(t_game *game)
 
 int				ft_put_piece(t_game *game, int round)
 {
-	ft_put_stratmap(*game, round); // debug
+	ft_put_stratmap(*game, round);
 	ft_get_place(game);
 	ft_printf("%d %d\n", game->pos_x, game->pos_y);
-	ft_put_best_place(game->pos_x, game->pos_y); // debug
+	ft_put_best_place(game->pos_x, game->pos_y);
 	if (game->place_found == 0)
 		return (-1);
 	return (0);
