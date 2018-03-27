@@ -1,6 +1,5 @@
 NAME = curquiza.filler
 
-#CC = gcc
 CC = gcc -Wall -Wextra -Werror
 #CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
@@ -26,8 +25,7 @@ C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 				strat_adjustment.c \
 				delete_and_clear.c \
 				main.c)
-C_FILES = $(C_DEBUG_FILE) \
-					$(C_OTHER_FILES)
+C_FILES = $(C_DEBUG_FILE) $(C_OTHER_FILES)
 
 
 O_DIR = objs
@@ -36,8 +34,6 @@ O_FILES = $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 H_DIR = includes
-
-# PROJ_LIB = libfiller.a
 
 LIB = -L$(LIBFT_DIR) -lft
 INCL = -I$(H_DIR) -I$(LIBFT_DIR)/includes
@@ -59,7 +55,7 @@ $(NAME) : $(LIBFT) $(O_FILES)
 	@echo "\033[1;31m-- EXEC ------------------------\033[0m"
 	@printf  "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
 
-$(O_DIR)/%.o: $(C_DIR)/%.c $(H_DIR)
+$(O_DIR)/%.o : $(C_DIR)/%.c $(H_DIR)
 	@mkdir -p $(O_DIR)
 	@$(CC) -o $@ -c $< $(INCL)
 	@printf  "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
@@ -73,10 +69,6 @@ fclean : clean
 	@rm -rf $(NAME)
 
 re : fclean all
-
-# $(PROJ_LIB): $(O_FILES)
-# 	@ar rc tests/$@ $(O_FILES)
-# 	@ranlib tests/$(PROJ_LIB)
 
 debug:
 ifeq ($(DEBUG), 1)
