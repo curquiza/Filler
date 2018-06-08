@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   first_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/08 18:45:02 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/08 19:41:53 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static int	ft_get_coin(t_game *game)
@@ -28,13 +40,12 @@ static int	ft_get_map_size(t_game *game)
 	char	*nbr;
 	char	*line;
 
-	if (get_next_line(0, &line) == -1 || !line || ft_strncmp(line, "Plateau", 7))
+	if (get_next_line(0, &line) == -1 || !line || ft_strncmp(line, BOARD, 7))
 	{
 		ft_strdel(&line);
 		return (-1);
 	}
-	if (!(start = ft_strchr(line, ' ')) || !(middle = ft_strchr(start + 1, ' '))
-			|| !(end = ft_strchr(middle + 1, ':')))
+	if (init_start_middle_end(line, &start, &middle, &end) == -1)
 	{
 		ft_strdel(&line);
 		return (-1);

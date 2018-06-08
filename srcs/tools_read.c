@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tools_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 14:29:57 by curquiza          #+#    #+#             */
-/*   Updated: 2018/05/25 15:02:13 by curquiza         ###   ########.fr       */
+/*   Created: 2018/06/08 20:19:29 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/08 20:19:54 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		main(void)
+int		init_start_middle_end(char *line, char **start, char **middle,
+														char **end)
 {
-	t_game	game;
-	int		round;
-
-	if (ft_first_init(&game) == -1)
-		ft_exit("Read error", 2);
-	round = 1;
-	while (1)
-	{
-		if (ft_get_data(&game) == -1)
-			break ;
-		ft_strat_map_calc(&game);
-		if (ft_put_piece(&game, round) == -1)
-			break ;
-		ft_strat_adjustment(&game);
-		ft_clear_all(&game);
-		round++;
-	}
-	ft_delete_all(&game);
+	*start = ft_strchr(line, ' ');
+	if (!(*start))
+		return (-1);
+	*middle = ft_strchr(*start + 1, ' ');
+	if (!(*middle))
+		return (-1);
+	*end = ft_strchr(*middle + 1, ':');
+	if (!(*end))
+		return (-1);
 	return (0);
 }

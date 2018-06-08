@@ -13,6 +13,7 @@ C_OTHER_FILES = $(addprefix $(C_DIR)/, \
 				tools_basics.c \
 				tools_player.c \
 				tools_strat.c \
+				tools_read.c \
 				first_init.c \
 				get_data.c \
 				put_piece.c \
