@@ -45,9 +45,7 @@ static int	ft_get_map_size(t_game *game)
 		ft_strdel(&line);
 		return (-1);
 	}
-	if (!(start = ft_strchr(line, ' '))
-			|| !(middle = ft_strchr(start + 1, ' '))
-			|| !(end = ft_strchr(middle + 1, ':')))
+	if (init_start_middle_end(line, &start, &middle, &end) == -1)
 	{
 		ft_strdel(&line);
 		return (-1);

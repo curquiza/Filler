@@ -19,6 +19,7 @@
 # define SMALL_MAP_MAX_W 20
 # define SMALL_MAP_MAX_H 20
 # define BOARD "Plateau"
+# define PIECE "Piece"
 
 typedef struct	s_map
 {
@@ -70,6 +71,8 @@ int				ft_heat_is_activate(t_game game);
 void			ft_activate_heat(t_game *game);
 void			ft_activate_border(t_game *game);
 void			ft_desactivate_border(t_game *game);
+int				init_start_middle_end(char *line, char **start, char **middle, char **end);
+
 
 /*
 ** Init
