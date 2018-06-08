@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 19:57:19 by curquiza          #+#    #+#             */
-/*   Updated: 2018/06/08 19:59:45 by curquiza         ###   ########.fr       */
+/*   Updated: 2018/06/08 20:20:43 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int				ft_heat_is_activate(t_game game);
 void			ft_activate_heat(t_game *game);
 void			ft_activate_border(t_game *game);
 void			ft_desactivate_border(t_game *game);
-int				init_start_middle_end(char *line, char **start, char **middle, char **end);
-
+int				init_start_middle_end(char *line, char **start, char **middle,
+																char **end);
 
 /*
 ** Init
