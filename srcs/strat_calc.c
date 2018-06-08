@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strat_calc.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/08 19:54:52 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/08 19:55:23 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static void	ft_calc_global_weight(t_map *point, t_game game)
@@ -43,12 +55,12 @@ static void	ft_get_position(t_game *game)
 		if (ft_is_me(*game, *tmp))
 		{
 			game->player_position = 1;
-			break;
+			break ;
 		}
 		if (ft_is_opp(*game, *tmp))
 		{
 			game->player_position = -1;
-			break;
+			break ;
 		}
 		tmp++;
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_data.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/08 19:46:17 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/08 19:51:50 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static int	ft_fill_map(t_game *game)
@@ -40,7 +52,8 @@ static int	ft_get_piece_size(t_game *game)
 		ft_strdel(&line);
 		return (-1);
 	}
-	if (!(start = ft_strchr(line, ' ')) || !(middle = ft_strchr(start + 1, ' '))
+	if (!(start = ft_strchr(line, ' '))
+			|| !(middle = ft_strchr(start + 1, ' '))
 			|| !(end = ft_strchr(middle + 1, ':')))
 	{
 		ft_strdel(&line);

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   border_check.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/08 17:54:12 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/08 18:44:20 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
-int 	ft_check_the_top(t_game game)
+int		ft_check_the_top(t_game game)
 {
 	int		j;
 	int		opp_coin;
@@ -20,7 +32,7 @@ int 	ft_check_the_top(t_game game)
 	return (0);
 }
 
-int 	ft_check_the_bottom(t_game game)
+int		ft_check_the_bottom(t_game game)
 {
 	int		j;
 	int		opp_coin;
@@ -40,7 +52,7 @@ int 	ft_check_the_bottom(t_game game)
 	return (0);
 }
 
-int 	ft_check_the_right(t_game game)
+int		ft_check_the_right(t_game game)
 {
 	int		i;
 	int		opp_coin;
@@ -60,7 +72,7 @@ int 	ft_check_the_right(t_game game)
 	return (0);
 }
 
-int 	ft_check_the_left(t_game game)
+int		ft_check_the_left(t_game game)
 {
 	int		i;
 	int		opp_coin;

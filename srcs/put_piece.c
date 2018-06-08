@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_piece.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/08 19:52:00 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/08 19:52:38 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static void		ft_move(t_game *game, int *i, int *j, int init_j)
@@ -43,10 +55,10 @@ static float	ft_calc_score(t_game game, int i, int j)
 
 static int		ft_is_better_place(float tmp, float best_score, t_game game)
 {
-		if (ft_is_top_player(game))
-			return (tmp >= best_score);
-		else
-			return (tmp > best_score);
+	if (ft_is_top_player(game))
+		return (tmp >= best_score);
+	else
+		return (tmp > best_score);
 }
 
 static void		ft_get_place(t_game *game)
